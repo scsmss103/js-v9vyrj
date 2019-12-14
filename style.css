@@ -53,3 +53,12 @@ th {
 		input {
 			position: relative;
 		}
+
+    .img_head {
+      background-image: url('https://curiouscoins.com/wp-content/uploads/2019/07/65048618_6124611662752_490229611569872896_n.png');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+     position: relative;
+     height: 50%;
+    }
