@@ -114,7 +114,7 @@ x = rows[i].getElementsByTagName("td")[4];
 y = rows[i+1].getElementsByTagName("td")[4];
 
 
-if(x.innerHTML < y.innerHTML){
+if(Number(x.innerHTML) < Number(y.innerHTML)){
 console.log(i);
 shouldSwitch=true;
 break;
