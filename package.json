@@ -1,0 +1,8 @@
+{
+  "name": "js-rr2zrc",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "@firebase/app": "0.4.20"
+  }
+}

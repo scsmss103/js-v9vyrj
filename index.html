@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<base target="_top">
+	<title style="position:fixed;">Sam's overview page</title>
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<script src="./index.js"></script>
+
+</head>
+
+<body !--onload="change_page('page1')" -->
+
+	<!--p style="font-family:arial; font-size:20px; font-weight:bold; position:relative;">IVR Table</p-->
+	<div id='ivr_table' style='display:none'>
+		<input type='text' id="myFilter"  placeholder="Search for Ticker.." >
+
+		<br>
+		<br>
+
+		<table>
+			<thead>
+				<th>Ticker</th>
+				<th>IVR</th>
+			</thead>
+			<tbody id="myTable">
+
+			</tbody>
+		</table>
+
+		<div class="pagination">
+			<p id="page1" class="active" onclick="change_page('page1')">1</p>
+			<p id="page2" onclick="change_page('page2')">2</p>
+			<p id="page3" onclick="change_page('page3')">3</p>
+			<p id="page4" onclick="change_page('page4')">4</p>
+			<p id="page5" onclick="change_page('page5')">5</p>
+			<p id="page6" onclick="change_page('page6')">6</p>
+			<p id="page7" onclick="change_page('page7')">7</p>
+			<p id="page8" onclick="change_page('page8')">8</p>
+			<p id="page9" onclick="change_page('page9')">9</p>
+			<p id="page10" onclick="change_page('page10')">10</p>
+		</div>
+		<br>
+		<br>
+</div>
+		
+    <button onclick="buttons('div_runs')" class="w3-button w3-block w3-left-align w3-xxxlarge w3-indigo" style='font-weight: bold'>
+      Runs
+    </button>
+
+
+    <div id='div_runs' class='w3-responsive w3-hide'>
+			<table class="w3-table w3-striped w3-hoverable w3-mobile  ">
+				<thead>
+					<th> Date</th>
+					<th> Start Time</th>
+					<th> End Time</th>
+					<th> Errors</th>
+					<th> Script Name</th>
+					<th> Run Time</th>
+
+				</thead>
+				<tbody id="run_table">
+
+				</tbody>
+			</table>
+		</div>
+
+
+
+
+		<<!-- The core Firebase JS SDK is always required and must be listed first -->
+			<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+
+			<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+			<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-analytics.js"></script>
+			<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-firestore.js"></script>
+
+			<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-storage.js"></script>
+
+			<script>
+				// Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyBvXl4M6mjgaK_xyzfNG2Qmp0gcxiktu-0",
+    authDomain: "stock-price-b675c.firebaseapp.com",
+    databaseURL: "https://stock-price-b675c.firebaseio.com",
+    projectId: "stock-price-b675c",
+    storageBucket: "stock-price-b675c.appspot.com",
+    messagingSenderId: "434049662522",
+    appId: "1:434049662522:web:5e73672d17d9d69f39bf03",
+    measurementId: "G-V5GQX48SD7"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
+
+var db = firebase.firestore();
+var ref = db.doc('date/htmls');
+//var storage = firebase.storage();
+//var storageRef = storage.ref('/test.txt');
+
+/*storageRef.getDownloadURL().then(function(url){
+console.log(url);
+
+document.getElementById('test_table').innerHTML=url;
+
+});*/
+
+ref.get().then(function(doc){
+  var data1 = doc.data();
+  //console.log(data1);
+  var html = '';
+
+  for (i in data1){
+    //console.log(i)   
+    html += data1[String(i)]; 
+   };
+  document.getElementById("run_table").innerHTML = html;
+  });
+			
+function buttons(id){
+
+var x = document.getElementById(id);
+if(x.className.indexOf('w3-show')==-1){
+  x.className += 'w3-show';
+}
+else{
+  x.className = x.className.replace("w3-show",'')
+
+};
+
+};      
+      
+  
+      
+      </script>
+
+</body>
+
+</html>
