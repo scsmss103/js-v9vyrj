@@ -65,6 +65,8 @@ font-size: 10vw;
 
 		input {
 			position: relative;
+      width:75%;
+      font-size: 10vw;
 		}
 
     .img_head {
