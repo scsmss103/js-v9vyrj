@@ -8,7 +8,7 @@ import "./style.css";
 
 document.getElementById("myFilter").addEventListener('input',function(event){
 var filter=event.target.value.toUpperCase();
-console.log(filter);
+
 getfilter(filter);
 
 });
@@ -24,8 +24,7 @@ function getfilter(filter) {
     var td = tr[i].getElementsByTagName("td");
 
     var ticker = td[0].innerHTML;
-    console.log(filter);
-    console.log(ticker.toUpperCase().indexOf(filter));
+    
 
     if (ticker.toUpperCase().indexOf(filter) > -1) {
       tr[i].style.display = "";
@@ -46,9 +45,11 @@ function change_page(id) {
   var table = document.getElementById("myTable");
   var tr = table.getElementsByTagName("tr");
   var rowPerPage = 10;
+  
 
   var maxValPage = goToPage * rowPerPage;
   var minValPage = maxValPage - rowPerPage;
+  
 
   loadTablePage(maxValPage, minValPage);
 
@@ -80,6 +81,7 @@ function loadTablePage(maxValPage, minValPage) {
     var td = tr[i].getElementsByTagName("td");
 
     var tr_class = tr[i].className;
+    
 
     if (tr_class >= minValPage && tr_class <= maxValPage) {
       tr[i].style.display = "";
@@ -94,6 +96,56 @@ function loadTablePage(maxValPage, minValPage) {
 
   tr_thead[0].style.display = "";
 }
+
+function sort_table(){
+
+var table, rows, switching, i, x, y, shouldSwitch;
+table = document.getElementById('myTable');
+switching = true;
+
+
+while (switching){
+switching = false;
+rows = table.rows;
+
+for(i=1;i<(rows.length-1);i++){
+shouldSwitch=false;
+x = rows[i].getElementsByTagName("td")[4];
+y = rows[i+1].getElementsByTagName("td")[4];
+
+
+if(x.innerHTML < y.innerHTML){
+console.log(i);
+shouldSwitch=true;
+break;
+};
+
+};
+
+if(shouldSwitch){
+
+rows[i].parentNode.insertBefore(rows[i+1],rows[i]);
+switching=true;
+};
+
+
+};
+
+setTimeout(function(){
+var table = document.getElementById('ivr_table');
+var tr = table.getElementsByTagName('tr');
+
+for(i=0;i<tr.length;i++){
+tr[i].className = i;
+
+};
+change_page("page1");
+}, 5000
+);
+
+}
+
+window.sort_table = sort_table;
 window.getfilter = getfilter;
 window.change_page  = change_page;
 window.loadTablePage = loadTablePage;

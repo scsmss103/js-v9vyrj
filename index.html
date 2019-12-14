@@ -9,23 +9,29 @@
 
 </head>
 
-<body onload="change_page('page1')">
+<body>
 
 <div class='img_head'>
-
 </div>
 	
-<button onclick="buttons('div_ivr')" class="w3-button w3-block w3-left-align w3-xxxlarge w3-indigo w3-margin-bottom" style='font-weight: bold'>
+<button onclick="buttons('div_ivr'), load_ivr()" class="w3-button w3-block w3-left-align w3-xxxlarge w3-indigo w3-margin-bottom" style='font-weight: bold'>
       IVR
     </button>
 
-	<div id='div_ivr' class='w3-hide'>
+	
+  <div id='div_ivr' class='w3-hide'>
+    
+    <div class='w3-row'>
 		<input type='text' id="myFilter"  placeholder="Search for Ticker.." >
 
+  <button class='w3-button w3-light-grey' onclick="sort_table()"> sort table desc
+	</button>
+  
+  </div>
 		<br>
 		<br>
 
-		<table id='myTable'>
+		<table id='myTable' calss='w3-table w3-striped w3-hoverable'>
 			<thead>
 				<th>Ticker</th>
 				<th>IV 30</th>
@@ -121,6 +127,7 @@ ref_html.get().then(function(doc){
    };
   document.getElementById("run_table").innerHTML = html;
   });
+function load_ivr(){
 
 var ref_ivr = db.collection('date/ivr/ticker');
 var html_ivr ='';
@@ -147,8 +154,21 @@ document.getElementById('ivr_table').innerHTML = html_ivr;
 
 })
 
-//console.log(html_ivr);
 });
+setTimeout(function(){
+var table = document.getElementById('ivr_table');
+var tr = table.getElementsByTagName('tr');
+
+for(i=0;i<tr.length;i++){
+tr[i].classList.add(i);
+
+};
+change_page("page1");
+}, 3000
+);
+};
+
+
 
 function buttons(id){
 
