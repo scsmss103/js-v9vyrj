@@ -86,14 +86,22 @@
       Fx Calculator
     </button>
 
-    <div id='div_calculator' class='w3-show' style='width:50%'>
-    <form>
-       <label>Currency: </label><input type='text' name='ccy' style='float:right;'> <br><br><br>
-        <label style='text-align:center'>ATR: </label><input type='text' name='atr' style='float:right;'>
-        <br><br><br><br>
-        <input type='submit' value='submit'>
+    <div id='div_calculator' class='w3-hide' style='width:50%'>
+    
 
-    </form>
+      <label>Profit target: </label><input type='text' id='tgt' style='float:right;' value= 52> <br><br><br>
+       <label>Currency: </label><input type='text' id='ccy' style='float:right;'> <br><br><br>
+        <label style='text-align:center'>ATR: </label><input type='text' id='atr' style='float:right;'>
+        <br><br><br>
+        <label  style='text-align:center'>FX rate: </label>
+        <div id=fx_rate style='float:right;'></div>
+        <br><br><br>
+         <label  style='text-align:center'>Position size: </label>
+        <div id="pos_size" style='float:right;'></div>
+        <br><br><br>
+        <input type='button' onclick="calc_pos_size()"  value='calculate' style='float:right;'>
+
+    
     
     
     </div>
