@@ -9,24 +9,31 @@
 
 </head>
 
-<body !--onload="change_page('page1')" -->
+<body onload="change_page('page1')">
 
 <div class='img_head'>
-  
+
 </div>
 	
+<button onclick="buttons('div_ivr')" class="w3-button w3-block w3-left-align w3-xxxlarge w3-indigo w3-margin-bottom" style='font-weight: bold'>
+      IVR
+    </button>
+
 	<div id='div_ivr' class='w3-hide'>
 		<input type='text' id="myFilter"  placeholder="Search for Ticker.." >
 
 		<br>
 		<br>
 
-		<table>
+		<table id='myTable'>
 			<thead>
 				<th>Ticker</th>
-				<th>IVR</th>
+				<th>IV 30</th>
+        <th>IV Min</th>
+        <th>IV Max</th>
+        <th>IVR</th>
 			</thead>
-			<tbody id="myTable">
+			<tbody id="ivr_table">
 
 			</tbody>
 		</table>
@@ -47,7 +54,7 @@
 		<br>
 </div>
 		
-    <button onclick="buttons('div_runs')" class="w3-button w3-block w3-left-align w3-xxxlarge w3-indigo" style='font-weight: bold'>
+    <button onclick="buttons('div_runs')" class="w3-button w3-block w3-left-align w3-xxxlarge w3-indigo w3-margin-bottom" style='font-weight: bold'>
       Runs
     </button>
 
@@ -100,18 +107,10 @@
 
 
 var db = firebase.firestore();
-var ref = db.doc('date/htmls');
-//var storage = firebase.storage();
-//var storageRef = storage.ref('/test.txt');
+var ref_html = db.doc('date/htmls');
 
-/*storageRef.getDownloadURL().then(function(url){
-console.log(url);
 
-document.getElementById('test_table').innerHTML=url;
-
-});*/
-
-ref.get().then(function(doc){
+ref_html.get().then(function(doc){
   var data1 = doc.data();
   //console.log(data1);
   var html = '';
@@ -122,7 +121,35 @@ ref.get().then(function(doc){
    };
   document.getElementById("run_table").innerHTML = html;
   });
-			
+
+var ref_ivr = db.collection('date/ivr/ticker');
+var html_ivr ='';
+ref_ivr.get().then(function(col){
+
+
+col.forEach(function(doc_ivr){
+var data_ivr1 = doc_ivr;
+
+
+
+var new_ref = ref_ivr.doc(doc_ivr.id);
+new_ref.get().then(function(new_doc){
+var ivr_data = new_doc.data()
+
+html_ivr += '<tr><td>'+doc_ivr.id+'</td>';
+html_ivr += '<td>'+ivr_data['iv_30']+'</td>';
+html_ivr += '<td>'+ivr_data['min_iv']+'</td>';
+html_ivr += '<td>'+ivr_data['max_iv']+'</td>';
+html_ivr += '<td>'+ivr_data['ivr']+'</td></tr>';
+
+document.getElementById('ivr_table').innerHTML = html_ivr;
+});
+
+})
+
+//console.log(html_ivr);
+});
+
 function buttons(id){
 
 var x = document.getElementById(id);
