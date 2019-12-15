@@ -11,23 +11,23 @@
 
 <body>
 
-<div class='img_head'>
-</div>
-	
-<button onclick="buttons('div_ivr'), load_ivr()" class="w3-button w3-block w3-left-align w3-jumbo w3-indigo w3-margin-bottom" style='font-weight: bold'>
+	<div class='img_head'>
+	</div>
+
+	<button onclick="buttons('div_ivr'), load_ivr()" class="w3-button w3-block w3-left-align w3-jumbo w3-indigo w3-margin-bottom" style='font-weight: bold'>
       IVR
     </button>
 
-	
-  <div id='div_ivr' class='w3-hide'>
-    
-    <div class='w3-row'>
-		<input type='text' id="myFilter" style='margin-left:10px; position: relative width:50%; font-size: 5vh;'   placeholder="Search for Ticker.."  >
 
-  <button class='w3-button w3-light-grey ' onclick="sort_table()" style="width: 30%; font-size:3vh; margin-left:50px;"> sort table desc
+	<div id='div_ivr' class='w3-hide'>
+
+		<div class='w3-row'>
+			<input type='text' id="myFilter" style='margin-left:10px; position: relative width:50%; font-size: 3vh;'   placeholder="Search for Ticker.."  >
+
+			<button class='w3-button w3-light-grey ' onclick="sort_table()" style="width: 30%; font-size:3vh; margin-left:50px;"> sort table desc
 	</button>
-  
-  </div>
+
+		</div>
 		<br>
 		<br>
 
@@ -35,9 +35,9 @@
 			<thead>
 				<th>Ticker</th>
 				<th>IV 30</th>
-        <th>IV Min</th>
-        <th>IV Max</th>
-        <th>IVR</th>
+				<th>IV Min</th>
+				<th>IV Max</th>
+				<th>IVR</th>
 			</thead>
 			<tbody id="ivr_table">
 
@@ -59,14 +59,14 @@
 		<br>
 		<br>
 </div>
-		
-    <button onclick="buttons('div_runs')" class="w3-button w3-block w3-left-align w3-jumbo w3-indigo w3-margin-bottom" style='font-weight: bold'>
+
+		<button onclick="buttons('div_runs')" class="w3-button w3-block w3-left-align w3-jumbo w3-indigo w3-margin-bottom" style='font-weight: bold'>
       Runs
     </button>
 
 
-    <div id='div_runs' class=' w3-hide'>
-			<table class="w3-table w3-striped w3-hoverable w3-responsive w3-mobile w3-xxxlarge " style='font-size:7vh;'>
+		<div id='div_runs' class=' w3-hide'>
+			<table class="w3-table w3-striped w3-hoverable w3-responsive w3-mobile w3-xxxlarge " style='font-size:3vh;'>
 				<thead>
 					<th> Date</th>
 					<th> Start Time</th>
@@ -82,44 +82,46 @@
 			</table>
 		</div>
 
-    <button onclick="buttons('div_calculator')" class="w3-button w3-block w3-left-align w3-jumbo w3-indigo w3-margin-bottom" style='font-weight: bold'>
+		<button onclick="buttons('div_calculator')" class="w3-button w3-block w3-left-align w3-jumbo w3-indigo w3-margin-bottom" style='font-weight: bold'>
       Fx Calculator
     </button>
 
-    <div id='div_calculator' class='w3-hide' style='width:100%; font-size:3vh;'>
-    
+		<div id='div_calculator' class='w3-hide' style='width:100%; font-size:3vh;'>
 
-      <label>Profit target: </label><input type='text' id='tgt' style='float:right;width:40%; margin-right:20px; ' value= 52> <br><br>
-       <label>Currency: </label><input type='text' id='ccy' style='float:right; width:40%;margin-right:20px;'> <br><br>
-        <label style='text-align:center'>ATR: </label><input type='text' id='atr' style='float:right;width:40%;margin-right:20px;'>
-        <br><br>
-        <label  style='text-align:center'>FX rate: </label>
-        <div id=fx_rate style='float:right;width:40%;margin-right:20px;'></div>
-        <br><br>
-         <label  style='text-align:center'>Position size: </label>
-        <div id="pos_size" style='float:right;width:40%;margin-right:20px;'></div>
-        <br><br>
-        <input type='button' onclick="calc_pos_size()"  value='calculate' style='float:right; width:40%; margin-right:20px;'>
 
-    
-    
-    
+			<label>Profit target: </label><input type='text' id='tgt' style='float:right;width:40%; margin-right:20px; ' value= 52>
+			<br><br>
+			<label>Currency: </label><input type='text' id='ccy' style='float:right; width:40%;margin-right:20px;'>
+			<br><br>
+			<label style='text-align:center'>ATR: </label><input type='text' id='atr' style='float:right;width:40%;margin-right:20px;'>
+			<br><br>
+			<label  style='text-align:center'>FX rate: </label>
+			<div id=fx_rate style='float:right;width:40%;margin-right:20px;'></div>
+			<br><br>
+			<label  style='text-align:center'>Position size: </label>
+			<div id="pos_size" style='float:right;width:40%;margin-right:20px;'></div>
+			<br><br>
+			<input type='button' onclick="calc_pos_size()"  value='calculate' style='float:right; width:40%; margin-right:20px;'>
+			<br><br>
+
+
+
     </div>
 
 
 
-		<<!-- The core Firebase JS SDK is always required and must be listed first -->
-			<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+			<<!-- The core Firebase JS SDK is always required and must be listed first -->
+				<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
 
-			<!-- TODO: Add SDKs for Firebase products that you want to use
+				<!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
-			<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-analytics.js"></script>
-			<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-firestore.js"></script>
+				<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-analytics.js"></script>
+				<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-firestore.js"></script>
 
-			<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-storage.js"></script>
+				<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-storage.js"></script>
 
-			<script>
-				// Your web app's Firebase configuration
+				<script>
+					// Your web app's Firebase configuration
   var firebaseConfig = {
     apiKey: "AIzaSyBvXl4M6mjgaK_xyzfNG2Qmp0gcxiktu-0",
     authDomain: "stock-price-b675c.firebaseapp.com",
@@ -192,7 +194,6 @@ change_page("page1");
 };
 
 
-
 function buttons(id){
 
 var x = document.getElementById(id);
@@ -201,10 +202,9 @@ if(x.className.indexOf('w3-show')==-1){
 }
 else{
   x.className = x.className.replace("w3-show",'')
-
 };
-
 };      
+      
       
 function calc_pos_size(){
 
@@ -225,12 +225,10 @@ console.log(pos);
 document.getElementById('pos_size').innerHTML = pos;
 document.getElementById('fx_rate').innerHTML = String(fx)+' ('+fx_date+')'
 
-
-
 });
 }  
       
-      </script>
+				</script>
 
 </body>
 
