@@ -24,7 +24,7 @@
 		<div class='w3-row'>
 			<input type='text' id="myFilter" style='margin-left:10px; font-size:3vh; max-width:50%;'   placeholder="Search for Ticker.."  >
 
-			<button class='w3-button w3-light-grey ' onclick="sort_table()" style="width: 30%; font-size:3vh; margin-left:50px;"> sort table desc
+			<button class='w3-button w3-light-grey ' onclick="sort_table()" style="width: 30%; font-size:2vh; margin-left:50px;"> sort table desc
 	</button>
 
 		</div>
@@ -223,7 +223,7 @@ pos = Math.round(pos*100)/100;
 console.log(pos);
 
 document.getElementById('pos_size').innerHTML = pos;
-document.getElementById('fx_rate').innerHTML = String(fx)+' ('+fx_date+')'
+document.getElementById('fx_rate').innerHTML = String(fx)+' <span style="font-size:0.5em">('+fx_date+')</span>';
 
 });
 }  
