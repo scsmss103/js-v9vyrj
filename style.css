@@ -64,7 +64,8 @@ font-size: 10vh;
     input{
       border-style:solid;
       border-width:thin;
-
+      padding-left:1vh;
+      margin-right: 
     }
 
     .img_head {
