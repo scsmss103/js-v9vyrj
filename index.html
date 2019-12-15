@@ -24,7 +24,7 @@
     <div class='w3-row'>
 		<input type='text' id="myFilter" style='margin-left:10px;'   placeholder="Search for Ticker.." >
 
-  <button class='w3-button w3-light-grey ' onclick="sort_table()" style="width: 30%; font-size:3vw; margin-left:50px;"> sort table desc
+  <button class='w3-button w3-light-grey ' onclick="sort_table()" style="width: 30%; font-size:3vh; margin-left:50px;"> sort table desc
 	</button>
   
   </div>
@@ -66,7 +66,7 @@
 
 
     <div id='div_runs' class=' w3-hide'>
-			<table class="w3-table w3-striped w3-hoverable w3-responsive w3-mobile w3-xxxlarge " style='font-size:7vw;'>
+			<table class="w3-table w3-striped w3-hoverable w3-responsive w3-mobile w3-xxxlarge " style='font-size:7vh;'>
 				<thead>
 					<th> Date</th>
 					<th> Start Time</th>
@@ -90,8 +90,8 @@
     
 
       <label>Profit target: </label><input type='text' id='tgt' style='float:right;' value= 52> <br><br><br>
-       <label>Currency: </label><input type='text' id='ccy' style='float:right;'> <br><br><br>
-        <label style='text-align:center'>ATR: </label><input type='text' id='atr' style='float:right;'>
+       <label>Currency: </label><input type='text' id='ccy' style='float:right;' value='jpy'> <br><br><br>
+        <label style='text-align:center'>ATR: </label><input type='text' id='atr' style='float:right;' value=0.57>
         <br><br><br>
         <label  style='text-align:center'>FX rate: </label>
         <div id=fx_rate style='float:right;'></div>
@@ -206,7 +206,29 @@ else{
 
 };      
       
-  
+function calc_pos_size(){
+
+tgt = document.getElementById('tgt').value;
+ccy = document.getElementById('ccy').value.toUpperCase();
+atr = document.getElementById('atr').value;
+var ref_fx = db.doc('date/fx_rates/ccy/'+ccy);
+
+ref_fx.get().then(function(fx_data){
+fx_dat = fx_data.data();
+fx = fx_dat['rate'];
+fx_date = fx_dat['date'];
+pos = (tgt/fx)/(atr*0.25);
+
+pos = Math.round(pos*100)/100;
+console.log(pos);
+
+document.getElementById('pos_size').innerHTML = pos;
+document.getElementById('fx_rate').innerHTML = String(fx)+' ('+fx_date+')'
+
+
+
+});
+}  
       
       </script>
 

@@ -145,11 +145,7 @@ change_page("page1");
 
 }
 
-function calc_pos_size(){
 
-
-  
-}
 
 window.sort_table = sort_table;
 window.getfilter = getfilter;

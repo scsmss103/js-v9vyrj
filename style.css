@@ -9,7 +9,7 @@ th {
 table{
 
 width: 100%;
-font-size: 10vw;
+font-size: 10vh;
   
 }
 	/*	tr {
@@ -37,7 +37,7 @@ font-size: 10vw;
 			text-decoration: none;
 			transition: background-color .3s;
 			font-family: arial;
-			font-size: 10vw;
+			font-size: 10vh;
 			font-weight: bold;
       
 		}
@@ -66,7 +66,7 @@ font-size: 10vw;
 		input {
 			position: relative;
       width:50%;
-      font-size: 5vw;
+      font-size: 5vh;
 		}
 
     .img_head {
