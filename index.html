@@ -6,6 +6,8 @@
 	<title style="position:fixed;">Sam's overview page</title>
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<script src="./index.js"></script>
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+  
 
 </head>
 
@@ -104,10 +106,16 @@
 			<input type='button' onclick="calc_pos_size()"  value='calculate' style='float:right; width:40%; margin-right:20px;'>
 			<br><br>
 
-
-
     </div>
 
+    <div id='charts'>
+    
+    
+    
+    
+    
+    
+    </div>
 
 
 			<<!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -227,6 +235,28 @@ document.getElementById('fx_rate').innerHTML = String(fx)+' <span style="font-si
 
 });
 }  
+
+ function drawChart() {
+      // Define the chart to be drawn.
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Element');
+      data.addColumn('number', 'Percentage');
+      data.addRows([
+        ['Nitrogen', 0.78],
+        ['Oxygen', 0.21],
+        ['Other', 0.01]
+      ]);
+
+      // Instantiate and draw the chart.
+      var chart = new google.visualization.PieChart(document.getElementById('charts'));
+      chart.draw(data, null);
+    }
+    
+  function loadChart(){
+    google.charts.load('current', {packages: ['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    }
+
       
 				</script>
 

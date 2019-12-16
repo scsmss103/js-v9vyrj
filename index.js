@@ -44,7 +44,7 @@ function change_page(id) {
   var goToPage = elem.innerText;
   var table = document.getElementById("myTable");
   var tr = table.getElementsByTagName("tr");
-  var rowPerPage = 10;
+  var rowPerPage = 20;
   
 
   var maxValPage = goToPage * rowPerPage;
