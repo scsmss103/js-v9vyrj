@@ -6,8 +6,8 @@
 	<title style="position:fixed;">Sam's overview page</title>
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<script src="./index.js"></script>
-  <script src="https://www.gstatic.com/charts/loader.js"></script>
-  
+	<script src="https://www.gstatic.com/charts/loader.js"></script>
+
 
 </head>
 
@@ -62,13 +62,13 @@
 		<br>
 </div>
 
-		<button onclick="buttons('div_runs')" class="w3-button w3-block w3-left-align w3-jumbo w3-indigo w3-margin-bottom" style='font-weight: bold'>
+		<button onclick="buttons('div_runs'), load_runs(), load_data_val()" class="w3-button w3-block w3-left-align w3-jumbo w3-indigo w3-margin-bottom" style='font-weight: bold'>
       Runs
     </button>
 
 
 		<div id='div_runs' class=' w3-hide'>
-			<table class="w3-table w3-striped w3-hoverable w3-responsive w3-mobile w3-xxxlarge " style='font-size:3vh;'>
+			<table class="w3-table w3-striped w3-hoverable w3-responsive w3-mobile w3-xxxlarge " style='font-size:2vh;'>
 				<thead>
 					<th> Date</th>
 					<th> Start Time</th>
@@ -80,6 +80,18 @@
 				</thead>
 				<tbody id="run_table">
 
+				</tbody>
+			</table>
+			<br>
+			<br>
+			<table class="w3-table w3-striped w3-hoverable w3-responsive w3-mobile w3-xxxlarge " style='font-size:2vh;'>
+				<thead>
+					<th>Table</th>
+					<th>Date</th>
+					<th>No. of rows</th>
+					<th>No. of tickers</th>
+				</thead>
+				<tbody id="data_val_table">
 				</tbody>
 			</table>
 		</div>
@@ -108,14 +120,14 @@
 
     </div>
 
-    <div id='charts'>
-    
-    
-    
-    
-    
-    
-    </div>
+			<div id='charts'>
+
+
+
+
+
+
+			</div>
 
 
 			<<!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -146,9 +158,9 @@
 
 
 var db = firebase.firestore();
+
+function load_runs(){
 var ref_html = db.doc('date/htmls');
-
-
 ref_html.get().then(function(doc){
   var data1 = doc.data();
   //console.log(data1);
@@ -160,6 +172,34 @@ ref_html.get().then(function(doc){
    };
   document.getElementById("run_table").innerHTML = html;
   });
+};
+
+
+function load_data_val(){
+
+var ref_data_val = db.collection('date/data_val/uploads');
+var html_data_val='';
+ref_data_val.get().then(function(tbl){
+
+tbl.forEach(function(doc_data_val){
+var new_ref = ref_data_val.doc(doc_data_val.id);
+
+
+new_ref.get().then(function(field){
+data_val_data = field.data();
+
+html_data_val+='<tr><td>'+doc_data_val.id+'</td>';
+html_data_val+='<td>'+data_val_data['date']+'</td>';
+html_data_val+='<td>'+data_val_data['no_rows']+'</td>';
+html_data_val+='<td>'+data_val_data['no_ticker']+'</td></tr>';
+
+document.getElementById('data_val_table').innerHTML = html_data_val;
+});
+});
+});
+};
+
+
 function load_ivr(){
 
 var ref_ivr = db.collection('date/ivr/ticker');
@@ -255,7 +295,8 @@ document.getElementById('fx_rate').innerHTML = String(fx)+' <span style="font-si
   function loadChart(){
     google.charts.load('current', {packages: ['corechart']});
     google.charts.setOnLoadCallback(drawChart);
-    }
+    };
+
 
       
 				</script>
