@@ -145,12 +145,55 @@ change_page("page1");
 
 }
 
+function drawChart() {
+      // Define the chart to be drawn.
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'ETFs');
+      data.addColumn('number', 'Performance');
+      
+      var ref_perf = db.doc('date/perf_etfs');
+      var html_perf ='';
+      ref_perf.get().then(function(perf){
+
+        var perf_data = perf.data();
+         console.log(perf_data);
+        var data_list = []
+        for (var i in perf_data){
+          var arr = [String(i),perf_data[String(i)]];
+          data_list.push(arr);
+        };
+        
+        data.addRows(data_list);
+        console.log(data);
+      });
+      
+      
+      
+      
+      /*
+      data.addRows([
+        ['Nitrogen', 0.78],
+        ['Oxygen', 0.21],
+        ['Other', 0.01]
+      ]);*/
+
+      // Instantiate and draw the chart.
+      var chart = new google.visualization.BarChart(document.getElementById('charts'));
+      chart.draw(data, null);
+    }
+    
+  function loadChart(){
+    google.charts.load('current', {packages: ['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    };
+
 
 
 window.sort_table = sort_table;
 window.getfilter = getfilter;
 window.change_page  = change_page;
 window.loadTablePage = loadTablePage;
+window.loadChart = loadChart
 
 
 

@@ -120,6 +120,11 @@
 
     </div>
 
+
+			<button onclick="loadChart()" class="w3-button w3-block w3-left-align w3-jumbo w3-indigo w3-margin-bottom" style='font-weight: bold'>
+      Show charts
+    </button>
+
 			<div id='charts'>
 
 
@@ -276,27 +281,7 @@ document.getElementById('fx_rate').innerHTML = String(fx)+' <span style="font-si
 });
 }  
 
- function drawChart() {
-      // Define the chart to be drawn.
-      var data = new google.visualization.DataTable();
-      data.addColumn('string', 'Element');
-      data.addColumn('number', 'Percentage');
-      data.addRows([
-        ['Nitrogen', 0.78],
-        ['Oxygen', 0.21],
-        ['Other', 0.01]
-      ]);
-
-      // Instantiate and draw the chart.
-      var chart = new google.visualization.PieChart(document.getElementById('charts'));
-      chart.draw(data, null);
-    }
-    
-  function loadChart(){
-    google.charts.load('current', {packages: ['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
-    };
-
+ 
 
       
 				</script>
