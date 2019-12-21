@@ -147,39 +147,43 @@ change_page("page1");
 
 function drawChart() {
       // Define the chart to be drawn.
-      var data = new google.visualization.DataTable();
-      data.addColumn('string', 'ETFs');
-      data.addColumn('number', 'Performance');
       
+    
       var ref_perf = db.doc('date/perf_etfs');
       var html_perf ='';
+      var data = new google.visualization.DataTable(); 
+      data.addColumn('string','ETF');
+      data.addColumn('number','Performance');
+      data.addColumn({type:'number',role:'annotation'});
+
+
       ref_perf.get().then(function(perf){
 
         var perf_data = perf.data();
-         console.log(perf_data);
-        var data_list = []
-        for (var i in perf_data){
-          var arr = [String(i),perf_data[String(i)]];
-          data_list.push(arr);
-        };
         
-        data.addRows(data_list);
-        console.log(data);
+        for (var i in perf_data){
+          var etf = i;
+          var perf_etf = perf_data[String(i)];         
+          data.addRow([etf,perf_etf,perf_etf]);
+          
+        };
       });
       
-      
-      
-      
-      /*
-      data.addRows([
-        ['Nitrogen', 0.78],
-        ['Oxygen', 0.21],
-        ['Other', 0.01]
-      ]);*/
+      var options = {
+        title: "Performance Sector ETFs",
+        bar: {groupWidth:"80%"},
+        vAxis:{minValue:0},
+        legend:'none'
+        
+      };
 
       // Instantiate and draw the chart.
-      var chart = new google.visualization.BarChart(document.getElementById('charts'));
-      chart.draw(data, null);
+      var chart = new google.visualization.BarChart(document.getElementById('div_charts'));
+      
+      //set 3 sec delay becoz firebase is slow
+      setTimeout(function(){
+      chart.draw(data, options)},3000);
+ 
     }
     
   function loadChart(){
