@@ -155,6 +155,7 @@ function drawChart() {
       data.addColumn('string','ETF');
       data.addColumn('number','Performance');
       data.addColumn({type:'number',role:'annotation'});
+      data.addColumn({type:'string', role:'style'});
 
 
       ref_perf.get().then(function(perf){
@@ -164,7 +165,13 @@ function drawChart() {
         for (var i in perf_data){
           var etf = i;
           var perf_etf = perf_data[String(i)];         
-          data.addRow([etf,perf_etf,perf_etf]);
+          var color ='';
+          if(perf_etf>0){
+            color = 'green';
+          } else {
+            color = 'red';
+          }
+          data.addRow([etf,perf_etf,perf_etf,color]);
           
         };
       });
@@ -173,7 +180,8 @@ function drawChart() {
         title: "Performance Sector ETFs",
         bar: {groupWidth:"80%"},
         vAxis:{minValue:0},
-        legend:'none'
+        legend:'none',
+        
         
       };
 
