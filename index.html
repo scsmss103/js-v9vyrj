@@ -40,6 +40,7 @@
 				<th>IV Min</th>
 				<th>IV Max</th>
 				<th>IVR</th>
+        <th>Earnings</th>
 			</thead>
 			<tbody id="ivr_table">
 
@@ -219,7 +220,8 @@ html_ivr += '<tr><td>'+doc_ivr.id+'</td>';
 html_ivr += '<td>'+ivr_data['iv_30']+'</td>';
 html_ivr += '<td>'+ivr_data['min_iv']+'</td>';
 html_ivr += '<td>'+ivr_data['max_iv']+'</td>';
-html_ivr += '<td>'+ivr_data['ivr']+'</td></tr>';
+html_ivr += '<td>'+ivr_data['ivr']+'</td>';
+html_ivr += '<td>'+ivr_data['earnings']+'</td></tr>';
 
 document.getElementById('ivr_table').innerHTML = html_ivr;
 });
