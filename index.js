@@ -6,6 +6,9 @@ import "./style.css";
 
 // Write Javascript code!
 
+//eventlisteners
+
+//--filter
 document.getElementById("myFilter").addEventListener('input',function(event){
 var filter=event.target.value.toUpperCase();
 
@@ -13,6 +16,11 @@ getfilter(filter);
 
 });
 
+//--checkbox show earnings or nt
+
+
+
+//functions
 
 function getfilter(filter) {
   
@@ -199,6 +207,31 @@ function drawChart() {
     google.charts.setOnLoadCallback(drawChart);
     };
 
+  function hide_earnings(){
+
+    var tbl = document.getElementById('ivr_table');
+    var rows = tbl.rows;
+    var dt = new Date(document.getElementById('inputExpiry').value);
+    console.log(rows.length);
+    for (i=0;i>rows.length;i++){
+
+      var curr_dt = new Date(rows[i].getElementsByTagName('td')[5].innerHTML);
+    
+    
+    
+    };
+    
+    
+    /*
+    var first = rows[0].getElementsByTagName('td')[5].innerHTML;
+    var dt = new Date(first);
+    var today = new Date('2020-02-21');
+    if(dt<today){rows[0].style.display='none'}
+    else{console.log('date is before today')};
+
+    console.log(first);
+    */
+  }
 
 
 window.sort_table = sort_table;
@@ -206,6 +239,7 @@ window.getfilter = getfilter;
 window.change_page  = change_page;
 window.loadTablePage = loadTablePage;
 window.loadChart = loadChart
+window.hide_earnings = hide_earnings
 
 
 
