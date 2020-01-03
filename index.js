@@ -214,10 +214,15 @@ function drawChart() {
     var dt = new Date(document.getElementById('inputExpiry').value);
     console.log(rows.length);
     for (i=0;i>rows.length;i++){
-
+      if(rows[i].getElementsByTagName('td')[5].innerHTML=='no earnings'){
+        curr_dt = new Date('2100-01-01')
+      }
+      else{
       var curr_dt = new Date(rows[i].getElementsByTagName('td')[5].innerHTML);
-    
-    
+      };
+      
+      if(curr_dt<dt){rows[i].style.display='none';};
+      
     
     };
     
