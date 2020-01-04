@@ -335,7 +335,7 @@ reset_class_names_ivrTbl();
 change_page("page1");
 var ref_upl = db.doc('date/ivr');
 ref_upl.get().then(function(upl){
-upl_data = upl.data()
+var upl_data = upl.data();
 window.alert('data as per: '+upl_data['upload_date']);
 });
 }, 5000
