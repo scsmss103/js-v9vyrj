@@ -1,11 +1,6 @@
 // Import stylesheets
 import "./style.css";
 
-
-
-
-// Write Javascript code!
-
 //eventlisteners
 
 //--filter
@@ -16,7 +11,26 @@ getfilter(filter);
 
 });
 
-//--checkbox show earnings or nt
+//load firebase
+
+var firebaseConfig = {
+    apiKey: "AIzaSyBvXl4M6mjgaK_xyzfNG2Qmp0gcxiktu-0",
+    authDomain: "stock-price-b675c.firebaseapp.com",
+    databaseURL: "https://stock-price-b675c.firebaseio.com",
+    projectId: "stock-price-b675c",
+    storageBucket: "stock-price-b675c.appspot.com",
+    messagingSenderId: "434049662522",
+    appId: "1:434049662522:web:5e73672d17d9d69f39bf03",
+    measurementId: "G-V5GQX48SD7"
+  };
+  // Initialize Firebase
+ try{
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+ }catch{};
+
+var db = firebase.firestore();
+
 
 
 
@@ -202,14 +216,12 @@ function drawChart() {
     };
 
   function hide_earnings(){
-
     var tbl = document.getElementById('ivr_table');
     var rows = tbl.rows;
     var dt = new Date(document.getElementById('inputExpiry').value);
     var box = document.getElementById('earn_check');
     
    if(box.checked == true){
-   
     for (var i=0;i<rows.length;i++){
       if(rows[i].getElementsByTagName('td')[5].innerHTML=='no earnings'){
         curr_dt = new Date('2100-01-01')
@@ -220,30 +232,16 @@ function drawChart() {
       
       if(curr_dt<dt){tbl.deleteRow(i); i--;};
     };
-    
     reset_class_names_ivrTbl();
     setTimeout(function(){
       change_page("page1"); },3000);
-    
-
    }else{
      console.log('box is not checked');
      load_ivr();
-
    };
-    
-    /*
-    var first = rows[0].getElementsByTagName('td')[5].innerHTML;
-    var dt = new Date(first);
-    var today = new Date('2020-02-21');
-    if(dt<today){rows[0].style.display='none'}
-    else{console.log('date is before today')};
-
-    console.log(first);
-    */
   }
+
   function reset_class_names_ivrTbl(){
-  
   var tbl = document.getElementById('ivr_table');
   var rows = tbl.rows;
   for(var i=0;i<rows.length;i++){
@@ -252,12 +250,138 @@ function drawChart() {
   }
 
   function check_if_div_shows(div){
-    
     var div_elem = document.getElementById(String(div));
-    
     return div_elem.className.indexOf('w3-show');
-
   }
+
+function load_runs(){
+//check if div is shown, if its gonna be hidden just hide div and dnt run the script
+var div = check_if_div_shows('div_runs');
+if(div==-1){return;};
+//
+var ref_html = db.doc('date/htmls');
+ref_html.get().then(function(doc){
+  var data1 = doc.data();
+  //console.log(data1);
+  var html = '';
+
+  for (i in data1){
+    //console.log(i)   
+    html += data1[String(i)]; 
+   };
+  document.getElementById("run_table").innerHTML = html;
+  });
+};
+
+
+function load_data_val(){
+//check if div is shown, if its gonna be hidden just hide div and dnt run the script
+var div = check_if_div_shows('div_runs');
+if(div==-1){return;};
+//
+var ref_data_val = db.collection('date/data_val/uploads');
+var html_data_val='';
+ref_data_val.get().then(function(tbl){
+
+tbl.forEach(function(doc_data_val){
+var new_ref = ref_data_val.doc(doc_data_val.id);
+
+
+new_ref.get().then(function(field){
+data_val_data = field.data();
+
+html_data_val+='<tr><td>'+doc_data_val.id+'</td>';
+html_data_val+='<td>'+data_val_data['date']+'</td>';
+html_data_val+='<td>'+data_val_data['no_rows']+'</td>';
+html_data_val+='<td>'+data_val_data['no_ticker']+'</td></tr>';
+
+document.getElementById('data_val_table').innerHTML = html_data_val;
+});
+});
+});
+};
+
+
+function load_ivr(){
+//check if div is shown, if its gonna be hidden just hide div and dnt run the script
+var div = check_if_div_shows('div_ivr');
+if(div==-1){return;};
+//
+var ref_ivr = db.collection('date/ivr/ticker');
+var html_ivr ='';
+ref_ivr.get().then(function(col){
+
+col.forEach(function(doc_ivr){
+var data_ivr1 = doc_ivr;
+
+var new_ref = ref_ivr.doc(doc_ivr.id);
+new_ref.get().then(function(new_doc){
+var ivr_data = new_doc.data()
+
+html_ivr += '<tr><td>'+doc_ivr.id+'</td>';
+html_ivr += '<td>'+ivr_data['iv_30']+'</td>';
+html_ivr += '<td>'+ivr_data['min_iv']+'</td>';
+html_ivr += '<td>'+ivr_data['max_iv']+'</td>';
+html_ivr += '<td>'+ivr_data['ivr']+'</td>';
+html_ivr += '<td class="w3-xxlarge">'+ivr_data['earnings']+'</td></tr>';
+
+document.getElementById('ivr_table').innerHTML = html_ivr;
+});
+})
+});
+
+setTimeout(function(){
+reset_class_names_ivrTbl();
+change_page("page1");
+var ref_upl = db.doc('date/ivr');
+ref_upl.get().then(function(upl){
+upl_data = upl.data()
+window.alert('data as per: '+upl_data['upload_date']);
+});
+}, 5000
+);
+
+};
+
+
+function buttons(id){
+
+var x = document.getElementById(id);
+if(x.className.indexOf('w3-show')==-1){
+  x.className += 'w3-show';
+}
+else{
+  x.className = x.className.replace("w3-show",'')
+};
+};      
+      
+      
+function calc_pos_size(){
+//check if div is shown, if its gonna be hidden just hide div and dnt run the script
+var div = check_if_div_shows('div_calculator');
+if(div==-1){return;};
+//
+tgt = document.getElementById('tgt').value;
+ccy = document.getElementById('ccy').value.toUpperCase();
+atr = document.getElementById('atr').value;
+var ref_fx = db.doc('date/fx_rates/ccy/'+ccy);
+
+ref_fx.get().then(function(fx_data){
+fx_dat = fx_data.data();
+fx = fx_dat['rate'];
+fx_date = fx_dat['date'];
+pos = (tgt/fx)/(atr*0.25);
+
+pos = Math.round(pos*100)/100;
+console.log(pos);
+
+document.getElementById('pos_size').innerHTML = pos;
+document.getElementById('fx_rate').innerHTML = String(fx)+' <span style="font-size:0.5em">('+fx_date+')</span>';
+
+});
+}  
+
+
 
 window.sort_table = sort_table;
 window.getfilter = getfilter;
@@ -267,6 +391,12 @@ window.loadChart = loadChart;
 window.hide_earnings = hide_earnings;
 window.reset_class_names_ivrTbl = reset_class_names_ivrTbl;
 window.check_if_div_shows = check_if_div_shows;
+window.load_runs = load_runs;
+window.load_data_val = load_data_val;
+window.load_ivr = load_ivr;
+window.buttons = buttons;
+window.calc_pos_size = calc_pos_size;
+
 
 
 
