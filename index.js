@@ -249,8 +249,13 @@ function drawChart() {
   for(var i=0;i<rows.length;i++){
     rows[i].className=i;
   };
-  
+  }
 
+  function check_if_div_shows(div){
+    
+    var div_elem = document.getElementById(String(div));
+    
+    return div_elem.className.indexOf('w3-show');
 
   }
 
@@ -261,7 +266,7 @@ window.loadTablePage = loadTablePage;
 window.loadChart = loadChart;
 window.hide_earnings = hide_earnings;
 window.reset_class_names_ivrTbl = reset_class_names_ivrTbl;
-
+window.check_if_div_shows = check_if_div_shows;
 
 
 

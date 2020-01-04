@@ -165,6 +165,10 @@
 var db = firebase.firestore();
 
 function load_runs(){
+//check if div is shown, if its gonna be hidden just hide div and dnt run the script
+var div = check_if_div_shows('div_runs');
+if(div==-1){return;};
+//
 var ref_html = db.doc('date/htmls');
 ref_html.get().then(function(doc){
   var data1 = doc.data();
@@ -181,7 +185,10 @@ ref_html.get().then(function(doc){
 
 
 function load_data_val(){
-
+//check if div is shown, if its gonna be hidden just hide div and dnt run the script
+var div = check_if_div_shows('div_runs');
+if(div==-1){return;};
+//
 var ref_data_val = db.collection('date/data_val/uploads');
 var html_data_val='';
 ref_data_val.get().then(function(tbl){
@@ -206,10 +213,10 @@ document.getElementById('data_val_table').innerHTML = html_data_val;
 
 
 function load_ivr(){
-
-
-
-
+//check if div is shown, if its gonna be hidden just hide div and dnt run the script
+var div = check_if_div_shows('div_ivr');
+if(div==-1){return;};
+//
 var ref_ivr = db.collection('date/ivr/ticker');
 var html_ivr ='';
 ref_ivr.get().then(function(col){
@@ -243,6 +250,7 @@ window.alert('data as per: '+upl_data['upload_date']);
 });
 }, 5000
 );
+
 };
 
 
@@ -259,7 +267,10 @@ else{
       
       
 function calc_pos_size(){
-
+//check if div is shown, if its gonna be hidden just hide div and dnt run the script
+var div = check_if_div_shows('div_calculator');
+if(div==-1){return;};
+//
 tgt = document.getElementById('tgt').value;
 ccy = document.getElementById('ccy').value.toUpperCase();
 atr = document.getElementById('atr').value;
