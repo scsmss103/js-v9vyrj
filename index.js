@@ -140,13 +140,7 @@ switching=true;
 };
 
 setTimeout(function(){
-var table = document.getElementById('ivr_table');
-var tr = table.getElementsByTagName('tr');
-
-for(i=0;i<tr.length;i++){
-tr[i].className = i;
-
-};
+reset_class_names_ivrTbl();
 change_page("page1");
 }, 5000
 );
@@ -212,8 +206,11 @@ function drawChart() {
     var tbl = document.getElementById('ivr_table');
     var rows = tbl.rows;
     var dt = new Date(document.getElementById('inputExpiry').value);
-    console.log(rows.length);
-    for (i=0;i>rows.length;i++){
+    var box = document.getElementById('earn_check');
+    
+   if(box.checked == true){
+   
+    for (var i=0;i<rows.length;i++){
       if(rows[i].getElementsByTagName('td')[5].innerHTML=='no earnings'){
         curr_dt = new Date('2100-01-01')
       }
@@ -221,11 +218,19 @@ function drawChart() {
       var curr_dt = new Date(rows[i].getElementsByTagName('td')[5].innerHTML);
       };
       
-      if(curr_dt<dt){rows[i].style.display='none';};
-      
-    
+      if(curr_dt<dt){tbl.deleteRow(i); i--;};
     };
     
+    reset_class_names_ivrTbl();
+    setTimeout(function(){
+      change_page("page1"); },3000);
+    
+
+   }else{
+     console.log('box is not checked');
+     load_ivr();
+
+   };
     
     /*
     var first = rows[0].getElementsByTagName('td')[5].innerHTML;
@@ -237,14 +242,25 @@ function drawChart() {
     console.log(first);
     */
   }
+  function reset_class_names_ivrTbl(){
+  
+  var tbl = document.getElementById('ivr_table');
+  var rows = tbl.rows;
+  for(var i=0;i<rows.length;i++){
+    rows[i].className=i;
+  };
+  
 
+
+  }
 
 window.sort_table = sort_table;
 window.getfilter = getfilter;
 window.change_page  = change_page;
 window.loadTablePage = loadTablePage;
-window.loadChart = loadChart
-window.hide_earnings = hide_earnings
+window.loadChart = loadChart;
+window.hide_earnings = hide_earnings;
+window.reset_class_names_ivrTbl = reset_class_names_ivrTbl;
 
 
 
