@@ -338,18 +338,18 @@ function calc_pos_size() {
     return;
   }
   //
-  tgt = document.getElementById("tgt").value;
-  ccy = document.getElementById("ccy").value.toUpperCase();
-  atr = document.getElementById("atr").value;
+  var tgt = document.getElementById("tgt").value;
+  var ccy = document.getElementById("ccy").value.toUpperCase();
+  var atr = document.getElementById("atr").value;
   var ref_fx = db.doc("date/fx_rates/ccy/" + ccy);
 
   ref_fx.get().then(function(fx_data) {
-    fx_dat = fx_data.data();
-    fx = fx_dat["rate"];
-    fx_date = fx_dat["date"];
-    pos = tgt / fx / (atr * 0.25);
+    var fx_dat = fx_data.data();
+    var fx = fx_dat["rate"];
+    var fx_date = fx_dat["date"];
+    var pos = tgt / fx / (atr * 0.25);
 
-    pos = Math.round(pos * 100) / 100;
+    var pos = Math.round(pos * 100) / 100;
     console.log(pos);
 
     document.getElementById("pos_size").innerHTML = pos;
