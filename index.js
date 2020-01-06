@@ -236,8 +236,9 @@ function load_runs() {
   //check if div is shown, if its gonna be hidden just hide div and dnt run the script
   var div = check_if_div_shows("div_runs");
   if (div == -1) {
+    console.log('abort run');
     return;
-  }
+  };
   //
   var ref_html = db.doc("date/htmls");
   ref_html.get().then(function(doc) {
@@ -245,8 +246,8 @@ function load_runs() {
     //console.log(data1);
     var html = "";
 
-    for (i in data1) {
-      //console.log(i)
+    for (var i in data1) {
+      //console.log(i);
       html += data1[String(i)];
     }
     document.getElementById("run_table").innerHTML = html;
@@ -267,7 +268,7 @@ function load_data_val() {
       var new_ref = ref_data_val.doc(doc_data_val.id);
 
       new_ref.get().then(function(field) {
-        data_val_data = field.data();
+        var data_val_data = field.data();
 
         html_data_val += "<tr><td>" + doc_data_val.id + "</td>";
         html_data_val += "<td>" + data_val_data["date"] + "</td>";
