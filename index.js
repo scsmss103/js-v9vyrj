@@ -350,7 +350,7 @@ function calc_pos_size() {
     var pos = tgt / fx / (atr * 0.25);
 
     var pos = Math.round(pos * 100) / 100;
-    console.log(pos);
+    //console.log(pos);
 
     document.getElementById("pos_size").innerHTML = pos;
     document.getElementById("fx_rate").innerHTML =
