@@ -128,13 +128,25 @@ function sort_table(col,order) {
   while (switching) {
     switching = false;
     rows = table.rows;
-
-    for (i = 1; i < rows.length - 1; i++) {
+    //i < rows.length - 1
+    for (i = 1;i < rows.length - 1; i++) {
       shouldSwitch = false;
       x = rows[i].getElementsByTagName("td")[col_no];
       y = rows[i + 1].getElementsByTagName("td")[col_no];
+      x = x.innerHTML;
+      y = y.innerHTML;
+      //console.log(x);
+      //console.log(y);
 
-      if (Number(x.innerHTML) < Number(y.innerHTML)) {
+      //for earnings
+      if(col=='earnings'){
+        if(x=='no earnings'){x='2100-01-01';};
+        if(y=='no earnings'){y='2100-01-01';};
+        x = new Date(x);
+        y = new Date(y);
+      };
+      //console.log(eval(String(x.getTime())+op+String(y.getTime())));
+      if (eval(String(x.getTime())+op+String(y.getTime()))) {
         //console.log(i);
         shouldSwitch = true;
         break;
@@ -371,6 +383,21 @@ function calc_pos_size() {
   });
 }
 
+
+//for testing
+function test(){
+var x,y;
+x='2019-12-20';
+y='2020-01-02';
+ x= new Date(x);
+ y= new Date(y);
+var op='>';
+
+console.log(eval(String(x.getTime())+op+String(y.getTime())));
+
+}
+
+
 window.sort_table = sort_table;
 window.getfilter = getfilter;
 window.change_page = change_page;
@@ -384,3 +411,4 @@ window.load_data_val = load_data_val;
 window.load_ivr = load_ivr;
 window.buttons = buttons;
 window.calc_pos_size = calc_pos_size;
+window.test = test;
