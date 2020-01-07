@@ -219,9 +219,7 @@ function hide_earnings() {
   var tbl = document.getElementById("ivr_table");
   var rows = tbl.rows;
   var dt = new Date(document.getElementById("inputExpiry").value);
-  var box = document.getElementById("earn_check");
-
-  if (box.checked == true) {
+ 
     for (var i = 0; i < rows.length; i++) {
       if (rows[i].getElementsByTagName("td")[5].innerHTML == "no earnings") {
         curr_dt = new Date("2100-01-01");
@@ -233,16 +231,13 @@ function hide_earnings() {
         tbl.deleteRow(i);
         i--;
       }
-    }
+    };
+
     reset_class_names_ivrTbl();
     setTimeout(function() {
       change_page("page1");
     }, 3000);
-  } else {
-    console.log("box is not checked");
-    load_ivr();
-  }
-}
+  } 
 
 function reset_class_names_ivrTbl() {
   var tbl = document.getElementById("ivr_table");
