@@ -107,10 +107,23 @@ function loadTablePage(maxValPage, minValPage) {
   tr_thead[0].style.display = "";
 }
 
-function sort_table() {
-  var table, rows, switching, i, x, y, shouldSwitch;
+function sort_table(col,order) {
+  var table, rows, switching, i, x, y, shouldSwitch, op, col_no;
   table = document.getElementById("myTable");
   switching = true;
+
+  //get operator to sort
+  if(order=='desc'){
+    op='<';
+  }else{op='>';};
+  //get column number to sort
+  if(col=='ivr'){
+    col_no=4;
+  }else if(col=='earnings'){
+    col_no=5;
+  }else{return;};
+
+
 
   while (switching) {
     switching = false;
@@ -118,11 +131,11 @@ function sort_table() {
 
     for (i = 1; i < rows.length - 1; i++) {
       shouldSwitch = false;
-      x = rows[i].getElementsByTagName("td")[4];
-      y = rows[i + 1].getElementsByTagName("td")[4];
+      x = rows[i].getElementsByTagName("td")[col_no];
+      y = rows[i + 1].getElementsByTagName("td")[col_no];
 
       if (Number(x.innerHTML) < Number(y.innerHTML)) {
-        console.log(i);
+        //console.log(i);
         shouldSwitch = true;
         break;
       }
