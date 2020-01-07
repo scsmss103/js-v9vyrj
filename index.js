@@ -108,6 +108,8 @@ function loadTablePage(maxValPage, minValPage) {
 }
 
 function sort_table(col,order) {
+
+  dimmer();
   var table, rows, switching, i, x, y, shouldSwitch, op, col_no;
   table = document.getElementById("myTable");
   switching = true;
@@ -162,6 +164,7 @@ function sort_table(col,order) {
   setTimeout(function() {
     reset_class_names_ivrTbl();
     change_page("page1");
+    dimmer();
   }, 5000);
 }
 
@@ -216,6 +219,8 @@ function loadChart() {
 }
 
 function hide_earnings() {
+  dimmer();
+  console.log('function called..')
   var tbl = document.getElementById("ivr_table");
   var rows = tbl.rows;
   var dt = new Date(document.getElementById("inputExpiry").value);
@@ -236,7 +241,9 @@ function hide_earnings() {
     reset_class_names_ivrTbl();
     setTimeout(function() {
       change_page("page1");
+      dimmer();
     }, 3000);
+    
   } 
 
 function reset_class_names_ivrTbl() {
@@ -254,9 +261,10 @@ function check_if_div_shows(div) {
 
 function load_runs() {
   //check if div is shown, if its gonna be hidden just hide div and dnt run the script
+  dimmer();
   var div = check_if_div_shows("div_runs");
   if (div == -1) {
-    console.log('abort run');
+    dimmer();
     return;
   };
   //
@@ -271,7 +279,9 @@ function load_runs() {
       html += data1[String(i)];
     }
     document.getElementById("run_table").innerHTML = html;
+    dimmer();
   });
+  
 }
 
 function load_data_val() {
@@ -303,8 +313,10 @@ function load_data_val() {
 
 function load_ivr() {
   //check if div is shown, if its gonna be hidden just hide div and dnt run the script
+  dimmer();
   var div = check_if_div_shows("div_ivr");
   if (div == -1) {
+    dimmer();
     return;
   }
   //
@@ -337,6 +349,7 @@ function load_ivr() {
     var ref_upl = db.doc("date/ivr");
     ref_upl.get().then(function(upl) {
       var upl_data = upl.data();
+      dimmer();
       window.alert("data as per: " + upl_data["upload_date"]);
     });
   }, 5000);
@@ -387,16 +400,29 @@ check_func.apply(this,args1);
 }else{uncheck_func.apply(this,args2);};
 };
 
+
+
+function dimmer(){
+
+var dspl = document.getElementById('overlay').style.display
+
+if(dspl == ''){
+document.getElementById('overlay').style.display='none';
+document.getElementById('loader').style.display='none'
+}else{
+document.getElementById('overlay').style.display = '';
+document.getElementById('loader').style.display = '';
+};
+}
+
 //for testing
-function test(func_call,args){
+function test(){
 
-func_call.apply(this,args);
+document.getElementById('overlay').style.display = '';
 
 }
 
-function test2(text1){
-  console.log('test2 called ');
-}
+
 
 window.sort_table = sort_table;
 window.getfilter = getfilter;
@@ -412,5 +438,6 @@ window.load_ivr = load_ivr;
 window.buttons = buttons;
 window.calc_pos_size = calc_pos_size;
 window.check_box_handler = check_box_handler;
+window.dimmer = dimmer;
 window.test = test;
-window.test2 = test2;
+
