@@ -135,18 +135,18 @@ function sort_table(col,order) {
       y = rows[i + 1].getElementsByTagName("td")[col_no];
       x = x.innerHTML;
       y = y.innerHTML;
-      //console.log(x);
-      //console.log(y);
-
+      
       //for earnings
       if(col=='earnings'){
         if(x=='no earnings'){x='2100-01-01';};
         if(y=='no earnings'){y='2100-01-01';};
         x = new Date(x);
         y = new Date(y);
+        x = x.getTime();
+        y = y.getTime();
       };
-      //console.log(eval(String(x.getTime())+op+String(y.getTime())));
-      if (eval(String(x.getTime())+op+String(y.getTime()))) {
+      
+      if (eval(String(x)+op+String(y))) {
         //console.log(i);
         shouldSwitch = true;
         break;
