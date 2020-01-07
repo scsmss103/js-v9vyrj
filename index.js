@@ -383,20 +383,25 @@ function calc_pos_size() {
   });
 }
 
+function check_box_handler(checkbox,check_func,args1,uncheck_func,args2){
+
+var box = document.getElementById(checkbox);
+
+if(box.checked==true){
+check_func.apply(this,args1);
+}else{uncheck_func.apply(this,args2);};
+};
 
 //for testing
-function test(){
-var x,y;
-x='2019-12-20';
-y='2020-01-02';
- x= new Date(x);
- y= new Date(y);
-var op='>';
+function test(func_call,args){
 
-console.log(eval(String(x.getTime())+op+String(y.getTime())));
+func_call.apply(this,args);
 
 }
 
+function test2(text1){
+  console.log('test2 called ');
+}
 
 window.sort_table = sort_table;
 window.getfilter = getfilter;
@@ -411,4 +416,6 @@ window.load_data_val = load_data_val;
 window.load_ivr = load_ivr;
 window.buttons = buttons;
 window.calc_pos_size = calc_pos_size;
+window.check_box_handler = check_box_handler;
 window.test = test;
+window.test2 = test2;
