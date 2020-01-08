@@ -316,6 +316,8 @@ function load_ivr() {
   dimmer();
   var div = check_if_div_shows("div_ivr");
   if (div == -1) {
+    document.getElementById('earn_check').checked=false;
+    document.getElementById('sort_earn_check').checked=false;
     dimmer();
     return;
   }
