@@ -417,6 +417,33 @@ document.getElementById('loader').style.display = '';
 };
 }
 
+function load_premium(){
+dimmer();
+//check if div is shown, if its gonna be hidden just hide div and dnt run the script
+  var div = check_if_div_shows("div_premium");
+  if (div == -1) {
+    dimmer();
+    return;
+  }
+  //
+var html='';
+var ref_prem = db.collection('date/trades/trx_no');
+ref_prem.get().then(function(col){
+col.forEach(function(trx_no){
+
+var new_ref = ref_prem.doc(trx_no.id)
+new_ref.get().then(function(data){
+var data = data.data();
+html+='<tr><td>'+trx_no.id+'</td>';
+html+='<td>'+data['underlying']+'</td>';
+html+='<td>'+data['premium']+'</td></tr>';
+document.getElementById('premium_table').innerHTML = html;
+});
+});
+});
+setTimeout(function(){dimmer();},2000);
+}
+
 //for testing
 function test(){
 
@@ -442,4 +469,4 @@ window.calc_pos_size = calc_pos_size;
 window.check_box_handler = check_box_handler;
 window.dimmer = dimmer;
 window.test = test;
-
+window.load_premium = load_premium;
