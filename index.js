@@ -444,6 +444,98 @@ document.getElementById('premium_table').innerHTML = html;
 setTimeout(function(){dimmer();},2000);
 }
 
+function load_closed_trx(){
+dimmer();
+//check if div is shown, if its gonna be hidden just hide div and dnt run the script
+  var div = check_if_div_shows("div_closed_trx");
+  if (div == -1) {
+    dimmer();
+    return;
+  }
+  //
+var html='';
+var ref_prem = db.collection('date/trades/perf');
+ref_prem.get().then(function(col){
+col.forEach(function(trx_no){
+
+var new_ref = ref_prem.doc(trx_no.id)
+new_ref.get().then(function(data){
+var data = data.data();
+html+='<tr><td>'+trx_no.id+'</td>';
+html+='<td>'+data['underlying']+'</td>';
+html+='<td>'+data['entry_time']+'</td>';
+html+='<td>'+data['exit_time']+'</td>';
+html+='<td>'+data['days_in_trade']+'</td>';
+html+='<td>'+data['perf']+'</td></tr>';
+document.getElementById('closed_trx_table').innerHTML = html;
+});
+});
+});
+setTimeout(function(){
+  dimmer();
+  sort_table_all('closed_trx_table','trx','desc');
+  
+  },4000);
+}
+
+function sort_table_all(tbl,col,order) {
+
+  dimmer();
+  var table, rows, switching, i, x, y, shouldSwitch, op, col_no;
+  table = document.getElementById(tbl);
+  switching = true;
+
+  //get operator to sort
+  if(order=='desc'){
+    op='<';
+  }else{op='>';};
+  //get column number to sort
+  if(col=='trx'){
+    col_no=0;
+  }else{return;};
+
+
+
+  while (switching) {
+    switching = false;
+    rows = table.rows;
+    //i < rows.length - 1
+    for (i = 1;i < rows.length - 1; i++) {
+      shouldSwitch = false;
+      x = rows[i].getElementsByTagName("td")[col_no];
+      y = rows[i + 1].getElementsByTagName("td")[col_no];
+      x = x.innerHTML;
+      y = y.innerHTML;
+      
+      //for earnings
+      if(col=='earnings'){
+        if(x=='no earnings'){x='2100-01-01';};
+        if(y=='no earnings'){y='2100-01-01';};
+        x = new Date(x);
+        y = new Date(y);
+        x = x.getTime();
+        y = y.getTime();
+      };
+      
+      if (eval(String(x)+op+String(y))) {
+        //console.log(i);
+        shouldSwitch = true;
+        break;
+      }
+    }
+
+    if (shouldSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+
+  setTimeout(function() {
+    dimmer();
+  }, 5000);
+}
+
+
 //for testing
 function test(){
 
@@ -470,3 +562,4 @@ window.check_box_handler = check_box_handler;
 window.dimmer = dimmer;
 window.test = test;
 window.load_premium = load_premium;
+window.load_closed_trx = load_closed_trx;

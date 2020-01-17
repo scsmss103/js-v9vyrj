@@ -160,6 +160,26 @@
         </table>
       </div>
 
+      <button onclick="buttons('div_closed_trx'),load_closed_trx()" class="w3-button w3-block w3-left-align w3-jumbo w3-indigo w3-margin-bottom" style='font-weight: bold'>
+      Show closed trx
+    </button>
+
+      <div id='div_closed_trx' class='w3-hide' style='width:100%; font-size:3vh;'>
+        <table class="w3-table w3-striped w3-hoverable w3-responsive w3-mobile w3-xxlarge " style='font-size:2vh;'>
+        <thead>
+          <th>Trx no.</th>
+          <th>Underlying</th>
+          <th>Entry</th>
+          <th>Exit</th>
+          <th>DIT</th>
+          <th>Perf</th>
+        </thead>
+        <tbody id='closed_trx_table'>
+        </tbody>
+        </table>
+      </div>
+
+
 
 			<button onclick="buttons('div_charts'),loadChart()" class="w3-button w3-block w3-left-align w3-jumbo w3-indigo w3-margin-bottom" style='font-weight: bold'>
       Show charts
