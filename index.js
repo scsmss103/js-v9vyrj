@@ -532,7 +532,7 @@ function sort_table_all(tbl,col,order) {
 
   setTimeout(function() {
     dimmer();
-  }, 5000);
+  }, 3000);
 }
 
 
