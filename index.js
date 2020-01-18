@@ -549,6 +549,14 @@ dimmer();
     return;
   }
   //
+
+var ref_tot = db.doc('date/trades/');
+ref_tot.get().then(function(fields){
+var data = fields.data();
+document.getElementById('tot_mtd').innerHTML = 'MTD: '+data['day_trading_perf_mtd'];
+document.getElementById('tot_ytd').innerHTML = 'YTD: '+data['day_trading_perf_ytd'];
+});
+
 var html='';
 var ref_mtd = db.collection('date/trades/mtd');
 ref_mtd.get().then(function(col){
