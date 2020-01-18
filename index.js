@@ -492,6 +492,8 @@ function sort_table_all(tbl,col,order) {
   //get column number to sort
   if(col=='trx'){
     col_no=0;
+  }else if(col=='perf'){
+    col_no=2
   }else{return;};
 
 
@@ -500,7 +502,7 @@ function sort_table_all(tbl,col,order) {
     switching = false;
     rows = table.rows;
     //i < rows.length - 1
-    for (i = 1;i < rows.length - 1; i++) {
+    for (i = 0;i < rows.length - 1; i++) {
       shouldSwitch = false;
       x = rows[i].getElementsByTagName("td")[col_no];
       y = rows[i + 1].getElementsByTagName("td")[col_no];
@@ -536,6 +538,61 @@ function sort_table_all(tbl,col,order) {
 }
 
 
+
+function load_perf(){
+
+dimmer();
+//check if div is shown, if its gonna be hidden just hide div and dnt run the script
+  var div = check_if_div_shows("div_perf");
+  if (div == -1) {
+    dimmer();
+    return;
+  }
+  //
+var html='';
+var ref_mtd = db.collection('date/trades/mtd');
+ref_mtd.get().then(function(col){
+col.forEach(function(trx_no){
+var new_ref = ref_mtd.doc(trx_no.id)
+new_ref.get().then(function(data){
+var data = data.data();
+html+='<tr><td>'+trx_no.id+'</td>';
+html+='<td>'+data['no_trx']+'</td>';
+html+='<td>'+data['perf']+'</td>';
+document.getElementById('perf_mtd_table').innerHTML = html;
+});
+});
+});
+
+var html_ytd='';
+var ref_ytd = db.collection('date/trades/ytd');
+ref_ytd.get().then(function(col){
+col.forEach(function(trx_no){
+var new_ref = ref_ytd.doc(trx_no.id)
+new_ref.get().then(function(data){
+var data = data.data();
+html_ytd+='<tr><td>'+trx_no.id+'</td>';
+html_ytd+='<td>'+data['no_trx']+'</td>';
+html_ytd+='<td>'+data['perf']+'</td>';
+document.getElementById('perf_ytd_table').innerHTML = html_ytd;
+});
+});
+});
+
+
+setTimeout(function(){
+  dimmer();
+  sort_table_all('perf_mtd_table','perf','desc');
+  sort_table_all('perf_ytd_table','perf','desc');
+  },4000);
+
+
+
+}
+
+
+
+
 //for testing
 function test(){
 
@@ -563,3 +620,4 @@ window.dimmer = dimmer;
 window.test = test;
 window.load_premium = load_premium;
 window.load_closed_trx = load_closed_trx;
+window.load_perf = load_perf;
