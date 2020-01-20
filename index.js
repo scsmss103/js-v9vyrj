@@ -491,7 +491,7 @@ function sort_table_all(tbl,col,order) {
   }else{op='>';};
   //get column number to sort
   if(col=='trx'){
-    col_no=0;
+    col_no=3;
   }else if(col=='perf'){
     col_no=2
   }else{return;};
@@ -517,6 +517,13 @@ function sort_table_all(tbl,col,order) {
         y = new Date(y);
         x = x.getTime();
         y = y.getTime();
+      };
+      if(col=='trx'){
+        x = new Date(x);
+        y = new Date(y);
+        x = x.getTime();
+        y = y.getTime();
+
       };
       
       if (eval(String(x)+op+String(y))) {
@@ -604,7 +611,13 @@ setTimeout(function(){
 //for testing
 function test(){
 
-document.getElementById('overlay').style.display = '';
+var dat_time = '2019-12-31 14:30';
+var dat_time1 = '2020-01-02 16:30';
+
+var new_date = new Date(dat_time);
+var new_date1 = new Date(dat_time1);
+
+console.log(new_date1<new_date);
 
 }
 
