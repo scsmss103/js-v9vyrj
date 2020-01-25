@@ -279,6 +279,7 @@ function load_runs() {
       html += data1[String(i)];
     }
     document.getElementById("run_table").innerHTML = html;
+    sort_table_all('run_table','runs','desc');
     dimmer();
   });
   
@@ -493,8 +494,11 @@ function sort_table_all(tbl,col,order) {
   if(col=='trx'){
     col_no=3;
   }else if(col=='perf'){
-    col_no=2
-  }else{return;};
+    col_no=2;
+  }else if (col=='runs'){
+    col_no =2;
+  }
+  else{return;};
 
 
 
@@ -518,7 +522,7 @@ function sort_table_all(tbl,col,order) {
         x = x.getTime();
         y = y.getTime();
       };
-      if(col=='trx'){
+      if(col=='trx' || col=='runs'){
         x = new Date(x);
         y = new Date(y);
         x = x.getTime();
