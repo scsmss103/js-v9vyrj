@@ -84,10 +84,31 @@
 		<br>
 </div>
 
-		<button onclick="buttons('div_runs'), load_runs(), load_data_val()" class="w3-button w3-block w3-left-align w3-jumbo w3-indigo w3-margin-bottom" style='font-weight: bold'>
-      Runs
+    
+
+		<button onclick="buttons('div_earnings'), load_earnings()" class="w3-button w3-block w3-left-align w3-jumbo w3-indigo w3-margin-bottom" style='font-weight: bold'>
+      Earnings
     </button>
 
+    <div id='div_earnings' class=' w3-hide'>
+			<table class="w3-table w3-striped w3-hoverable w3-responsive w3-mobile w3-xxlarge " style='font-size:2vh;'>
+				<thead>
+					<th> Date</th>
+					<th> Ticker</th>
+					<th> Inside moves</th>
+
+				</thead>
+				<tbody id="earnings_table">
+
+				</tbody>
+			</table>
+    </div>  
+
+
+
+      <button onclick="buttons('div_runs'), load_runs(), load_data_val()" class="w3-button w3-block w3-left-align w3-jumbo w3-indigo w3-margin-bottom" style='font-weight: bold'>
+      Runs
+    </button>
 
 		<div id='div_runs' class=' w3-hide'>
 			<table class="w3-table w3-striped w3-hoverable w3-responsive w3-mobile w3-xxlarge " style='font-size:2vh;'>

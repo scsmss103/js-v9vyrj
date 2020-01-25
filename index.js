@@ -497,6 +497,8 @@ function sort_table_all(tbl,col,order) {
     col_no=2;
   }else if (col=='runs'){
     col_no =2;
+  }else if (col=='earnings_move'){
+    col_no=0;
   }
   else{return;};
 
@@ -522,7 +524,7 @@ function sort_table_all(tbl,col,order) {
         x = x.getTime();
         y = y.getTime();
       };
-      if(col=='trx' || col=='runs'){
+      if(col=='trx' || col=='runs' || col=='earnings_move'){
         x = new Date(x);
         y = new Date(y);
         x = x.getTime();
@@ -609,7 +611,37 @@ setTimeout(function(){
 
 }
 
+function load_earnings(){
 
+dimmer();
+//check if div is shown, if its gonna be hidden just hide div and dnt run the script
+  var div = check_if_div_shows("div_earnings");
+  if (div == -1) {
+    dimmer();
+    return;
+  }
+  //
+
+var html='';
+var ref_earnings = db.collection('date/earnings_move/tickers');
+ref_earnings.get().then(function(col){
+col.forEach(function(trx_no){
+var new_ref = ref_earnings.doc(trx_no.id);
+new_ref.get().then(function(data){
+var data = data.data();
+
+html+='<tr><td>'+data['earnings_date']+'</td>';
+html+='<td>'+trx_no.id+'</td>';
+html+='<td>'+data['inside_moves']+'</td>';
+document.getElementById('earnings_table').innerHTML = html;
+});
+});
+});
+setTimeout(function(){
+  dimmer();
+  sort_table_all('earnings_table','earnings_move','asc');
+  },4000);
+}
 
 
 //for testing
@@ -646,3 +678,4 @@ window.test = test;
 window.load_premium = load_premium;
 window.load_closed_trx = load_closed_trx;
 window.load_perf = load_perf;
+window.load_earnings = load_earnings;
