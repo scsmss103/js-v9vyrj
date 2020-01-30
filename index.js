@@ -437,6 +437,8 @@ new_ref.get().then(function(data){
 var data = data.data();
 html+='<tr><td>'+trx_no.id+'</td>';
 html+='<td>'+data['underlying']+'</td>';
+html+='<td>'+data['entry_time']+'</td>';
+html+='<td style="text-align:center;">'+data['days_in_trade']+'</td>';
 html+='<td style="text-align:right;">'+data['premium']+'</td></tr>';
 document.getElementById('premium_table').innerHTML = html;
 });
