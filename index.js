@@ -634,7 +634,8 @@ var data = data.data();
 
 html+='<tr><td>'+data['earnings_date']+'</td>';
 html+='<td>'+trx_no.id+'</td>';
-html+='<td>'+data['inside_moves']+'</td>';
+html+='<td style="text-align:center;">'+data['inside_moves']+'</td>';
+html+='<td style="text-align:right;">'+data['ivr']+'</td></tr>';
 document.getElementById('earnings_table').innerHTML = html;
 });
 });
