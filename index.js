@@ -123,6 +123,8 @@ function sort_table(col,order) {
     col_no=4;
   }else if(col=='earnings'){
     col_no=5;
+  }else if(col=='iv'){
+    col_no=1;
   }else{return;};
 
 
@@ -220,7 +222,6 @@ function loadChart() {
 
 function hide_earnings() {
   dimmer();
-  console.log('function called..')
   var tbl = document.getElementById("ivr_table");
   var rows = tbl.rows;
   var dt = new Date(document.getElementById("inputExpiry").value);
@@ -245,6 +246,34 @@ function hide_earnings() {
     }, 3000);
     
   } 
+function hide_rows(cat) {
+  dimmer();
+  var tbl = document.getElementById("ivr_table");
+  var rows = tbl.rows;
+  
+  if(cat=='etf'){
+    var col=5;
+    var find_val='no earnings';
+  };
+ 
+    for (var i = 0; i < rows.length; i++) {
+      
+      var data_check = rows[i].getElementsByTagName("td")[col].innerHTML;
+
+      if (data_check != find_val) {
+        tbl.deleteRow(i);
+        i--;
+      };
+    };
+
+    reset_class_names_ivrTbl();
+    setTimeout(function() {
+      change_page("page1");
+      dimmer();
+    }, 3000);
+    
+  } 
+
 
 function reset_class_names_ivrTbl() {
   var tbl = document.getElementById("ivr_table");
@@ -683,3 +712,4 @@ window.load_premium = load_premium;
 window.load_closed_trx = load_closed_trx;
 window.load_perf = load_perf;
 window.load_earnings = load_earnings;
+window.hide_rows = hide_rows;
