@@ -425,13 +425,23 @@ function calc_pos_size() {
 
 function check_box_handler(checkbox,check_func,args1,uncheck_func,args2){
 
-var box = document.getElementById(checkbox);
+  var box = document.getElementById(checkbox);
 
-if(box.checked==true){
-check_func.apply(this,args1);
-}else{uncheck_func.apply(this,args2);};
+  if(box.checked==true){
+    check_func.apply(this,args1);
+  }else{uncheck_func.apply(this,args2);};
 };
 
+function uncheck_ivr_boxes(){
+  var list_boxes = ['earn_check','sort_earn_check','sort_iv_desc_check','etf_check']
+
+  for(var i = 0;i<list_boxes.length;i++){
+    var curr_box = document.getElementById(list_boxes[i]);
+    curr_box.checked = false;
+
+  };
+
+};
 
 
 function dimmer(){
