@@ -346,8 +346,7 @@ function load_ivr() {
   dimmer();
   var div = check_if_div_shows("div_ivr");
   if (div == -1) {
-    document.getElementById('earn_check').checked=false;
-    document.getElementById('sort_earn_check').checked=false;
+    uncheck_ivr_boxes();
     dimmer();
     return;
   }
@@ -723,3 +722,4 @@ window.load_closed_trx = load_closed_trx;
 window.load_perf = load_perf;
 window.load_earnings = load_earnings;
 window.hide_rows = hide_rows;
+window.uncheck_ivr_boxes = uncheck_ivr_boxes;
