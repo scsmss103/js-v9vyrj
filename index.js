@@ -465,6 +465,7 @@ dimmer();
     return;
   }
   //
+get_last_tr_day('premium_date');
 var html='';
 var ref_prem = db.collection('date/trades/trx_no');
 ref_prem.get().then(function(col){
@@ -495,6 +496,7 @@ dimmer();
     return;
   }
   //
+get_last_tr_day('closed_trx_date');
 var html='';
 var ref_prem = db.collection('date/trades/perf');
 ref_prem.get().then(function(col){
@@ -685,6 +687,16 @@ setTimeout(function(){
   },4000);
 }
 
+function get_last_tr_day(cap_id){
+
+var html='';
+var ref = db.doc('date/trades/');
+ref.get().then(function(date){
+var data = date.data();
+document.getElementById(cap_id).innerHTML = 'latest statement: '+data['latest_statement'];
+});
+
+};
 
 //for testing
 function test(){
@@ -723,3 +735,4 @@ window.load_perf = load_perf;
 window.load_earnings = load_earnings;
 window.hide_rows = hide_rows;
 window.uncheck_ivr_boxes = uncheck_ivr_boxes;
+window.get_last_tr_day = get_last_tr_day;
