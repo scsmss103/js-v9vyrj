@@ -386,6 +386,43 @@ function load_ivr() {
   }, 5000);
 }
 
+function load_events(){
+
+ 
+  //check if div is shown, if its gonna be hidden just hide div and dnt run the script
+  dimmer();
+  var div = check_if_div_shows("div_events");
+  if (div == -1) {
+    dimmer();
+    return;
+  }
+  //
+
+  var ref_event = db.collection('date/events/tickers');
+  var event_html='';
+  
+  ref_event.get().then(function(dat){
+    dat.forEach(function(dat1){
+      var new_ref_event = ref_event.doc(dat1.id);
+
+      new_ref_event.get().then(function(new_dat){
+        var datas = new_dat.data();
+        event_html += '<tr><td>'+dat1.id+'</td>';
+        event_html += '<td>'+datas['date']+'</td>';
+        event_html += '<td>'+datas['category']+'</td>';
+        event_html += '<td>'+datas['details']+'</td></tr>';
+
+        document.getElementById('data_events_table').innerHTML = event_html;
+        
+      });
+    });
+  });
+  setTimeout(function() {
+  sort_table_all('data_events_table','events','asc');
+  dimmer();}
+  ,3000);
+};
+
 function buttons(id) {
   var x = document.getElementById(id);
   if (x.className.indexOf("w3-show") == -1) {
@@ -542,8 +579,9 @@ function sort_table_all(tbl,col,order) {
     col_no =2;
   }else if (col=='earnings_move'){
     col_no=0;
-  }
-  else{return;};
+  }else if (col=='events'){
+    col_no=1;
+  }else{return;};
 
 
 
@@ -567,7 +605,7 @@ function sort_table_all(tbl,col,order) {
         x = x.getTime();
         y = y.getTime();
       };
-      if(col=='trx' || col=='runs' || col=='earnings_move'){
+      if(col=='trx' || col=='runs' || col=='earnings_move' || col=='events'){
         x = new Date(x);
         y = new Date(y);
         x = x.getTime();
@@ -736,3 +774,4 @@ window.load_earnings = load_earnings;
 window.hide_rows = hide_rows;
 window.uncheck_ivr_boxes = uncheck_ivr_boxes;
 window.get_last_tr_day = get_last_tr_day;
+window.load_events = load_events;

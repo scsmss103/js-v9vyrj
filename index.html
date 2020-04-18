@@ -146,6 +146,22 @@
 			</table>
 		</div>
 
+    <button onclick="buttons('div_events'), load_events()" class="w3-button w3-block w3-left-align w3-jumbo w3-indigo w3-margin-bottom" style='font-weight: bold'>
+      Events
+    </button>
+    <div id='div_events' class='w3-hide' style='width:100%; font-size:3vh;'>
+      <table class="w3-table w3-striped w3-hoverable w3-responsive w3-mobile w3-xxlarge " style='font-size:2vh;'>
+				<thead>
+					<th>Ticker</th>
+					<th>Date</th>
+					<th>Category</th>
+					<th>Details</th>
+				</thead>
+				<tbody id="data_events_table">
+				</tbody>
+			</table>
+    </div>
+
 		<button onclick="buttons('div_calculator')" class="w3-button w3-block w3-left-align w3-jumbo w3-indigo w3-margin-bottom" style='font-weight: bold'>
       Fx Calculator
     </button>
