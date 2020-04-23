@@ -407,11 +407,8 @@ function load_events(){
 
       new_ref_event.get().then(function(new_dat){
         var datas = new_dat.data();
-        event_html += '<tr><td>'+dat1.id+'</td>';
-        event_html += '<td>'+datas['date']+'</td>';
-        event_html += '<td>'+datas['category']+'</td>';
-        event_html += '<td>'+datas['details']+'</td></tr>';
-
+        //console.log('test');
+        event_html += datas['html'];
         document.getElementById('data_events_table').innerHTML = event_html;
         
       });
