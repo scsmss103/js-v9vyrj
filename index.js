@@ -121,8 +121,10 @@ function sort_table(col,order) {
   //get column number to sort
   if(col=='ivr'){
     col_no=4;
-  }else if(col=='earnings'){
+  }else if(col=='iv_pct'){
     col_no=5;
+  }else if(col=='earnings'){
+    col_no=6;
   }else if(col=='iv'){
     col_no=1;
   }else{return;};
@@ -227,10 +229,10 @@ function hide_earnings() {
   var dt = new Date(document.getElementById("inputExpiry").value);
  
     for (var i = 0; i < rows.length; i++) {
-      if (rows[i].getElementsByTagName("td")[5].innerHTML == "no earnings") {
+      if (rows[i].getElementsByTagName("td")[6].innerHTML == "no earnings") {
         curr_dt = new Date("2100-01-01");
       } else {
-        var curr_dt = new Date(rows[i].getElementsByTagName("td")[5].innerHTML);
+        var curr_dt = new Date(rows[i].getElementsByTagName("td")[6].innerHTML);
       }
 
       if (curr_dt < dt) {
@@ -252,7 +254,7 @@ function hide_rows(cat) {
   var rows = tbl.rows;
   
   if(cat=='etf'){
-    var col=5;
+    var col=6;
     var find_val='no earnings';
   };
  
@@ -366,6 +368,7 @@ function load_ivr() {
         html_ivr += "<td>" + ivr_data["min_iv"] + "</td>";
         html_ivr += "<td>" + ivr_data["max_iv"] + "</td>";
         html_ivr += "<td>" + ivr_data["ivr"] + "</td>";
+        html_ivr += "<td>" + ivr_data["iv_pct"] + "</td>";
         html_ivr +=
           '<td class="w3-xxlarge">' + ivr_data["earnings"] + "</td></tr>";
 
@@ -466,11 +469,12 @@ function check_box_handler(checkbox,check_func,args1,uncheck_func,args2){
 };
 
 function uncheck_ivr_boxes(){
-  var list_boxes = ['earn_check','sort_earn_check','sort_iv_desc_check','etf_check']
+  var list_boxes = ['earn_check','sort_earn_check','sort_iv_desc_check','etf_check','iv_pct_check'];
 
   for(var i = 0;i<list_boxes.length;i++){
     var curr_box = document.getElementById(list_boxes[i]);
     curr_box.checked = false;
+    document.getElementById("myFilter").value = "";
 
   };
 

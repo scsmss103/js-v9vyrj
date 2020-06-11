@@ -43,7 +43,7 @@
   	</div>
 
     <div class='w3-row'>
-     <input type='text' id="inputExpiry" style='margin-left:10px; font-size:3vh; max-width:50%;'   value='2020-06-19'>
+     <input type='text' id="inputExpiry" style='margin-left:10px; font-size:3vh; max-width:50%;'   value='2020-07-17'>
 
     <input id='earn_check' type='checkbox' onclick='check_box_handler("earn_check",hide_earnings,[],load_ivr)' style='margin-left:50px;transform:scale(2);'><span style='font-size:2vh; margin-left:20px;'>hide w/ earnings</span>
     
@@ -55,6 +55,15 @@
 
     <input id='etf_check' type='checkbox' onclick='check_box_handler("etf_check",hide_rows,["etf"],load_ivr)' style='margin-left:15px; margin-top:10px;transform:scale(2);'><span style='font-size:2vh; margin-left:20px;'>show ETFs only</span>
 
+     
+    </div>
+
+    <div class='w3-row'>
+      <input id='iv_pct_check' type='checkbox' onclick='check_box_handler("iv_pct_check",sort_table,["iv_pct","desc"],load_ivr)' style='margin-left:15px; margin-top:10px;transform:scale(2);'><span style='font-size:2vh; margin-left:20px;'>sort iv pct desc</span>
+
+      <button class='w3-button w3-light-grey ' onclick="uncheck_ivr_boxes(),load_ivr()" style="width: 30%; font-size:2vh; margin-left:15px;"> clar all
+	    </button>
+      
     </div>
     </div>
 		<br>
@@ -67,6 +76,7 @@
 				<th>IV Min</th>
 				<th>IV Max</th>
 				<th>IVR</th>
+        <th>IV pct</th>
         <th>Earnings</th>
 			</thead>
 			<tbody id="ivr_table">
