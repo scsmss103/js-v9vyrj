@@ -780,7 +780,7 @@ window.onscroll = function (){
 
 
   console.log(screen.height / 2);
-  if(document.documentElement.scrollTop > 200){
+  if(document.documentElement.scrollTop > 20){
     var max_pos = Math.max(...Object.values(btn_pos));
     var to_btn = Object.keys(btn_pos).find(key => btn_pos[key] === max_pos);
     var btn = document.getElementById("topBtn");
