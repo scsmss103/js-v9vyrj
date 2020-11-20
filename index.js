@@ -762,12 +762,25 @@ window.onscroll = function (){
   for(var i=1;i<childs.length;i++){
     if(childs[i].tagName=="BUTTON"){
       if(childs[i].id != "" && childs[i].id != "topBtn"){
-      btn_list.push(childs[i].id)}
+        btn_list.push(childs[i].id)}
     };
   };
   
-  console.log(btn_list);
+  //get position of the btn
+  var btn_pos ={};
+  for(var i=0;i<btn_list.length;i++){
+    var pos = document.getElementById(btn_list[i]).offsetTop;
+    var curr_pos = document.documentElement.scrollTop +380;
+    var pos_diff = curr_pos - pos;
+    console.log(curr_pos);
+    if(pos_diff >0){
+      btn_pos[btn_list[i]] = pos;
+    };
+  };
 
+  document.documentElement.scroll
+
+  console.log(btn_pos);
   if(document.documentElement.scrollTop > 200){
   
   document.getElementById("topBtn").style.display = "block";
