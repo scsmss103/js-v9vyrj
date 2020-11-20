@@ -770,20 +770,24 @@ window.onscroll = function (){
   var btn_pos ={};
   for(var i=0;i<btn_list.length;i++){
     var pos = document.getElementById(btn_list[i]).offsetTop;
-    var curr_pos = document.documentElement.scrollTop +380;
+    var curr_pos = document.documentElement.scrollTop +(screen.height /2);
     var pos_diff = curr_pos - pos;
-    console.log(curr_pos);
+   
     if(pos_diff >0){
       btn_pos[btn_list[i]] = pos;
     };
   };
 
-  document.documentElement.scroll
 
-  console.log(btn_pos);
+  console.log(screen.height / 2);
   if(document.documentElement.scrollTop > 200){
+    var max_pos = Math.max(...Object.values(btn_pos));
+    var to_btn = Object.keys(btn_pos).find(key => btn_pos[key] === max_pos);
+    var btn = document.getElementById("topBtn");
+    btn.innerHTML = "to " + document.getElementById(to_btn).innerHTML;
+    btn.style.display = "block";
+    btn.addEventListener("click",function(){document.documentElement.scrollTop = max_pos;})
   
-  document.getElementById("topBtn").style.display = "block";
   }else{
     document.getElementById("topBtn").style.display = "none";
   };
