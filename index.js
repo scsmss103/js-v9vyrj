@@ -772,14 +772,14 @@ function btn_top(){
     var pos = document.getElementById(btn_list[i]).offsetTop;
     var curr_pos = document.documentElement.scrollTop +(screen.height /2);
     var pos_diff = curr_pos - pos;
-   
+   console.log(pos);
     if(pos_diff >0){
       btn_pos[btn_list[i]] = pos;
     };
   };
 
 
-  console.log(document.scrollingElement.scrollTop);
+  
   if(document.scrollingElement.scrollTop > 0){
     var max_pos = Math.max(...Object.values(btn_pos));
     var to_btn = Object.keys(btn_pos).find(key => btn_pos[key] === max_pos);
