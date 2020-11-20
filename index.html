@@ -27,7 +27,7 @@
 	<div class='img_head'></div>
   
 
-	<button onclick="buttons('div_ivr'), load_ivr()" class="w3-button w3-block w3-left-align w3-jumbo w3-indigo w3-margin-bottom" style='font-weight: bold'>
+	<button id="btn_ivr" onclick="buttons('div_ivr'), load_ivr()" class="w3-button w3-block w3-left-align w3-jumbo w3-indigo w3-margin-bottom" style='font-weight: bold'>
       IVR
     </button>
 
@@ -125,7 +125,7 @@
 
 
 
-      <button onclick="buttons('div_runs'), load_runs(), load_data_val()" class="w3-button w3-block w3-left-align w3-jumbo w3-indigo w3-margin-bottom" style='font-weight: bold'>
+      <button id="btn_runs" onclick="buttons('div_runs'), load_runs(), load_data_val()" class="w3-button w3-block w3-left-align w3-jumbo w3-indigo w3-margin-bottom" style='font-weight: bold'>
       Runs
     </button>
 
@@ -160,7 +160,7 @@
 			</table>
 		</div>
 
-    <button onclick="buttons('div_events'), load_events()" class="w3-button w3-block w3-left-align w3-jumbo w3-indigo w3-margin-bottom" style='font-weight: bold'>
+    <button id="btn_events" onclick="buttons('div_events'), load_events()" class="w3-button w3-block w3-left-align w3-jumbo w3-indigo w3-margin-bottom" style='font-weight: bold'>
       Events
     </button>
     <div id='div_events' class='w3-hide' style='width:100%; font-size:3vh;'>
@@ -176,7 +176,7 @@
 			</table>
     </div>
 
-		<button onclick="buttons('div_calculator')" class="w3-button w3-block w3-left-align w3-jumbo w3-indigo w3-margin-bottom" style='font-weight: bold'>
+		<button id="btn_fx_calc" onclick="buttons('div_calculator')" class="w3-button w3-block w3-left-align w3-jumbo w3-indigo w3-margin-bottom" style='font-weight: bold'>
       Fx Calculator
     </button>
 
@@ -208,7 +208,7 @@
 
 
 
-      <button onclick="buttons('div_premium'), load_premium()" class="w3-button w3-block w3-left-align w3-jumbo w3-indigo w3-margin-bottom" style='font-weight: bold'>
+      <button id="btn_prem" onclick="buttons('div_premium'), load_premium()" class="w3-button w3-block w3-left-align w3-jumbo w3-indigo w3-margin-bottom" style='font-weight: bold'>
       Show premiums
     </button>
 
@@ -228,7 +228,7 @@
         </table>
       </div>
 
-      <button onclick="buttons('div_closed_trx'),load_closed_trx()" class="w3-button w3-block w3-left-align w3-jumbo w3-indigo w3-margin-bottom" style='font-weight: bold'>
+      <button id="btn_trx" onclick="buttons('div_closed_trx'),load_closed_trx()" class="w3-button w3-block w3-left-align w3-jumbo w3-indigo w3-margin-bottom" style='font-weight: bold'>
       Show closed trx
     </button>
 
@@ -249,7 +249,7 @@
       </div>
 
 
-      <button onclick="buttons('div_perf'), load_perf()" class="w3-button w3-block w3-left-align w3-jumbo w3-indigo w3-margin-bottom" style='font-weight: bold'>
+      <button id="btn_perf" onclick="buttons('div_perf'), load_perf()" class="w3-button w3-block w3-left-align w3-jumbo w3-indigo w3-margin-bottom" style='font-weight: bold'>
       Show daytrading perf
     </button>
 

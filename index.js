@@ -754,7 +754,11 @@ var new_date1 = new Date(dat_time1);*/
 
 window.onscroll = function (){
   
-  var div_ivr = document.getElementById("div_ivr").offsetTop
+  var div_ivr = document.getElementById("div_ivr").offsetTop;
+  var childs = document.getElementsByTagName("body")[0].childNodes;
+
+
+
   if(document.documentElement.scrollTop > 200){
   //console.log("new");
   document.getElementById("topBtn").style.display = "block";
