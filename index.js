@@ -770,9 +770,9 @@ function btn_top(){
   var btn_pos ={};
   for(var i=0;i<btn_list.length;i++){
     var pos = document.getElementById(btn_list[i]).offsetTop;
-    var curr_pos = document.documentElement.scrollTop +(screen.height /2);
+    var curr_pos = document.scrollingElement.scrollTop +(screen.height /2);
     var pos_diff = curr_pos - pos;
-   console.log(pos);
+   console.log(curr_pos);
     if(pos_diff >0){
       btn_pos[btn_list[i]] = pos;
     };
