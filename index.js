@@ -741,16 +741,34 @@ document.getElementById(cap_id).innerHTML = 'latest statement: '+data['latest_st
 
 //for testing
 function test(){
-
+/*
 var dat_time = '2019-12-31 14:30';
 var dat_time1 = '2020-01-02 16:30';
 
 var new_date = new Date(dat_time);
-var new_date1 = new Date(dat_time1);
+var new_date1 = new Date(dat_time1);*/
+//var test = document.getElementById("btn_earnings").offsetTop;
+//console.log("test");
 
-console.log(new_date1<new_date);
+};
 
-}
+window.onscroll = function (){
+  
+  var div_ivr = document.getElementById("div_ivr").offsetTop
+  if(document.documentElement.scrollTop > 200){
+  //console.log("new");
+  document.getElementById("topBtn").style.display = "block";
+  }else{
+    document.getElementById("topBtn").style.display = "none";
+  };
+  };
+
+function new_test(){
+var test = document.getElementById("btn_earnings").offsetTop;
+console.log("test");
+
+
+};
 
 
 
@@ -770,6 +788,7 @@ window.calc_pos_size = calc_pos_size;
 window.check_box_handler = check_box_handler;
 window.dimmer = dimmer;
 window.test = test;
+window.new_test = new_test;
 window.load_premium = load_premium;
 window.load_closed_trx = load_closed_trx;
 window.load_perf = load_perf;
