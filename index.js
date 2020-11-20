@@ -780,13 +780,13 @@ function btn_top(){
 
 
   console.log(document.scrollingElement.scrollTop);
-  if(document.documentElement.scrollTop > 0){
+  if(document.scrollingElement.scrollTop > 0){
     var max_pos = Math.max(...Object.values(btn_pos));
     var to_btn = Object.keys(btn_pos).find(key => btn_pos[key] === max_pos);
     var btn = document.getElementById("topBtn");
     btn.innerHTML = "to " + document.getElementById(to_btn).innerHTML;
     btn.style.display = "block";
-    btn.addEventListener("click",function(){document.documentElement.scrollTop = max_pos;})
+    btn.addEventListener("click",function(){document.scrollingElement.scrollTop = max_pos;})
   
   }else{
     document.getElementById("topBtn").style.display = "none";
