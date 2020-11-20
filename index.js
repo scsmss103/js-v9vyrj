@@ -756,11 +756,20 @@ window.onscroll = function (){
   
   var div_ivr = document.getElementById("div_ivr").offsetTop;
   var childs = document.getElementsByTagName("body")[0].childNodes;
+  var btn_list = []
 
-
+  //get button ids
+  for(var i=1;i<childs.length;i++){
+    if(childs[i].tagName=="BUTTON"){
+      if(childs[i].id != "" && childs[i].id != "topBtn"){
+      btn_list.push(childs[i].id)}
+    };
+  };
+  
+  console.log(btn_list);
 
   if(document.documentElement.scrollTop > 200){
-  //console.log("new");
+  
   document.getElementById("topBtn").style.display = "block";
   }else{
     document.getElementById("topBtn").style.display = "none";
