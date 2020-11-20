@@ -779,7 +779,7 @@ function btn_top(){
   };
 
 
-  console.log(screen.height / 2);
+  console.log(document.documentElement.scrollTop);
   if(document.documentElement.scrollTop > 0){
     var max_pos = Math.max(...Object.values(btn_pos));
     var to_btn = Object.keys(btn_pos).find(key => btn_pos[key] === max_pos);
