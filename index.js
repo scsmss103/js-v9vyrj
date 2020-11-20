@@ -752,7 +752,7 @@ var new_date1 = new Date(dat_time1);*/
 
 };
 
-window.onscroll = function (){
+function btn_top(){
   
   var div_ivr = document.getElementById("div_ivr").offsetTop;
   var childs = document.getElementsByTagName("body")[0].childNodes;
@@ -780,7 +780,7 @@ window.onscroll = function (){
 
 
   console.log(screen.height / 2);
-  if(document.documentElement.scrollTop > 20){
+  if(document.documentElement.scrollTop > 0){
     var max_pos = Math.max(...Object.values(btn_pos));
     var to_btn = Object.keys(btn_pos).find(key => btn_pos[key] === max_pos);
     var btn = document.getElementById("topBtn");
@@ -827,3 +827,4 @@ window.hide_rows = hide_rows;
 window.uncheck_ivr_boxes = uncheck_ivr_boxes;
 window.get_last_tr_day = get_last_tr_day;
 window.load_events = load_events;
+window.btn_top = btn_top;
