@@ -777,8 +777,6 @@ function btn_top(){
       btn_pos[btn_list[i]] = pos;
     };
   };
-
-
   
   if(document.scrollingElement.scrollTop > 0){
     var max_pos = Math.max(...Object.values(btn_pos));
