@@ -161,6 +161,26 @@
 			</table>
 		</div>
 
+    <button id="btn_vix" onclick="buttons('div_vix'),load_vix()" class="w3-button w3-block w3-left-align w3-jumbo w3-indigo w3-margin-bottom" style='font-weight: bold'>
+      VIX
+    </button>
+    <div id='div_vix' class=' w3-hide'>
+      <table class="w3-table w3-striped w3-hoverable w3-responsive w3-mobile w3-xxlarge " style='font-size:2vh;'>
+      <caption id='vix_date' style='font-weight:bold;text-align:left;font-size:3vh'>upload date:</caption>
+      <thead>
+					<th>VIX 1</th>
+					<th>VIX 2</th>
+					<th>VIX 1 Val</th>
+					<th>VIX 2 Val</th>
+          <th>Cont</th>
+          <th>Pct</th>
+				</thead>
+        <tbody id="vix_table">
+				</tbody>
+      </table>
+    </div>
+
+
     <button id="btn_events" onclick="buttons('div_events'), load_events()" class="w3-button w3-block w3-left-align w3-jumbo w3-indigo w3-margin-bottom" style='font-weight: bold'>
       Events
     </button>

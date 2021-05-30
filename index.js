@@ -389,6 +389,49 @@ function load_ivr() {
   }, 5000);
 }
 
+function load_vix(){
+ //check if div is shown, if its gonna be hidden just hide div and dnt run the script
+  dimmer();
+  var div = check_if_div_shows("div_vix");
+  if (div == -1) {
+    dimmer();
+    return;
+  }
+  //get upl date
+  var ref_vix_date = db.doc("date/vix_cash/");
+
+  ref_vix_date.get().then(function(vix_date){
+    var data = vix_date.data();
+    document.getElementById('vix_date').innerHTML = 'upload date: '+data['upl_date'];
+  });
+
+  //get data
+  var ref_vix = db.collection("date/vix_cash/vix1");
+  var html_vix = "";
+  ref_vix.get().then(function(vix){
+    vix.forEach(function(doc_vix){
+
+      var new_ref = ref_vix.doc(doc_vix.id);
+      new_ref.get().then(function(new_vix){
+        var vix_data = new_vix.data();
+
+        html_vix += '<tr><td>'+doc_vix.id+'</td>';
+        html_vix += '<td>' + vix_data['vix2'] + '</td>';
+        html_vix += '<td>' + vix_data['vix1_val'] + '</td>';
+        html_vix += '<td>' + vix_data['vix2_val'] + '</td>';
+        html_vix += '<td>' + vix_data['cont'] + '</td>';
+        html_vix += '<td>' + vix_data['pct'] + '</td></tr>'
+
+        document.getElementById("vix_table").innerHTML = html_vix;
+
+      });
+
+    });
+  });
+  setTimeout(function(){dimmer();},2000);
+}
+
+
 function load_events(){
 
  
@@ -811,6 +854,7 @@ window.check_if_div_shows = check_if_div_shows;
 window.load_runs = load_runs;
 window.load_data_val = load_data_val;
 window.load_ivr = load_ivr;
+window.load_vix = load_vix;
 window.buttons = buttons;
 window.calc_pos_size = calc_pos_size;
 window.check_box_handler = check_box_handler;
