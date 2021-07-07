@@ -494,9 +494,10 @@ function calc_pos_size() {
     var pos = tgt / fx / (atr * 0.25);
 
     var pos = Math.round(pos * 100) / 100;
+    var pos2 = pos/4;
     //console.log(pos);
 
-    document.getElementById("pos_size").innerHTML = pos;
+    document.getElementById("pos_size").innerHTML = String(pos)+'/'+String(pos2);
     document.getElementById("fx_rate").innerHTML =
       String(fx) + ' <span style="font-size:0.5em">(' + fx_date + ")</span>";
   });
